@@ -51,7 +51,7 @@ void MoveCrystal1::Update()
 	// 停止中は移動・回転を行わない
 	if (!isStopped)
 	{
-		//Move();
+		Move();
 		//回転処理。
 		Rotation();
 	}
@@ -89,27 +89,27 @@ void MoveCrystal1::Update()
 void MoveCrystal1::Move()
 {
 	srand(time(nullptr));
-	position.x += rand() % 8;
-	position.x -= rand() % 8;
-	position.z += rand() % 8;
-	position.z -= rand() % 8;
-	if (position.x >= 4500) {
-		position.x = rand() % 3100 - 100;
+	position.x += rand() % 30;
+	position.x -= rand() % 30;
+	position.z += rand() % 30;
+	position.z -= rand() % 30;
+	if (position.x >= 1065) {
+		position.x = rand() % 2000 - 1000;
 	}
-	if (position.x <= -800) {
+	if (position.x <= -1315) {
 
-		position.x = rand() % 3100 - 100;
+		position.x = rand() % 2000 - 1000;
 	}
-	if (position.z >= 800) {
+	if (position.z >= 1870) {
 	
-		position.z = rand() % 1000 - 500;
+		position.z = rand() % 1050 + 600;
 	}
-	if (position.z <= -900) {
+	if (position.z <= 590) {
 
-		position.z = rand() % 1000 - 500;
+		position.z = rand() % 1350 + 600;
 	}
 
-	if (moveCount == 0)
+	/*if (moveCount == 0)
 	{
 		position.y += 1.0f;
 	}
@@ -126,7 +126,7 @@ void MoveCrystal1::Move()
 	else if (position.y <= firstPosition.y - 50.0f)
 	{
 		moveCount = 0;
-	}
+	}*/
 
 	modelRender.SetPosition(position);
 }

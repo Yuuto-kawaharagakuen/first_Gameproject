@@ -19,6 +19,7 @@ public:
 	void PlayAnimation();
 
 	//メンバ変数
+	FontRender fontRender;
 	ModelRender modelRender; //モデルレンダー
 	Vector3 position;
 	enum EnAnimatitonClip {

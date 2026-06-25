@@ -13,6 +13,7 @@
 #include"GoalUI.h"
 #include "GameState.h"
 #include "Countdown.h"
+#include"MoveCrystal1.h"
 Game::Game()
 {   //背景を生成
 	sky = NewGO<SkyCube>(0, "skycube");
@@ -56,6 +57,10 @@ Game::Game()
 	Crystal* crystal6 = NewGO<Crystal>(0, "crystal");
 	crystal6->position = { 0.0f,90000.0f,0.0f };
 	crystal6->firstPosition = crystal6->position;
+
+	MoveCrystal1* moveCrystal1 = NewGO<MoveCrystal1>(0, "crystal");
+	moveCrystal1->position = { 0.0f,-300.0f,1200.0f };
+	moveCrystal1->firstPosition = moveCrystal1->position;
 
 	goal = NewGO<Goal>(0, "goal");
 	goal->position = { 50000.0f, 5000.0f, 5000.0f };

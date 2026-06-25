@@ -14,6 +14,8 @@ Player::Player()
 	animationClips[enAnimationClip_Run].SetLoopFlag(true);
 	animationClips[enAnimationClip_Jump].Load("Assets/animData/jump.tka");
 	animationClips[enAnimationClip_Jump].SetLoopFlag(false);
+
+	fontRender.SetColor(g_vec4Black);
 	//ユニティちゃんのモデルを読み込む
 	modelRender.Init("Assets/modelData/unityChan.tkm", animationClips, enAnimationClip_Num, enModelUpAxisY);
 	// 初期の向きを180度回転させる（Y軸回転）
@@ -57,6 +59,9 @@ void Player::Update()
 	//アニメーションの再生
 	PlayAnimation();
 
+	wchar_t text[128];
+		swprintf_s(text, 128, L"X: %.2f Y: %.2f Z: %.2f", position.x, position.y, position.z);
+		fontRender.SetText(text);
 	//絵描きさんの更新処理
 	modelRender.Update();
 }
@@ -206,4 +211,5 @@ void Player::Render(RenderContext& rc)
 {
 	//ユニティちゃんを描画する
 	modelRender.Draw(rc);
+	fontRender.Draw(rc);
 }
