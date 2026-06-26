@@ -14,6 +14,7 @@
 #include "GameState.h"
 #include "Countdown.h"
 #include"MoveCrystal1.h"
+#include"EscapeCrystal.h"
 Game::Game()
 {   //背景を生成
 	sky = NewGO<SkyCube>(0, "skycube");
@@ -62,6 +63,10 @@ Game::Game()
 	moveCrystal1->position = { 0.0f,-300.0f,1200.0f };
 	moveCrystal1->firstPosition = moveCrystal1->position;
 
+	EscapeCrystal* escapeCrystal = NewGO<EscapeCrystal>(0, "crystal");
+	escapeCrystal->position = { 800.0f,1010.0f,-200.0f };
+	escapeCrystal->firstPosition = escapeCrystal->position;
+
 	goal = NewGO<Goal>(0, "goal");
 	goal->position = { 50000.0f, 5000.0f, 5000.0f };
 	//ゲーム中のBGMを読み込む
@@ -84,7 +89,14 @@ Game::~Game()
 		DeleteGO(crystal);
 		DeleteGO(goal);
 	}
-
+	for (auto crystal : FindGOs<MoveCrystal1>("crystal")) {
+		//この星を消すッ！
+		DeleteGO(crystal);
+	}
+	for (auto crystal : FindGOs<EscapeCrystal>("crystal")) {
+		//この星を消すッ！
+		DeleteGO(crystal);
+	}
 		//プレイヤーを削除する。
 	DeleteGO(player);
 	//ゲームカメラを削除する。

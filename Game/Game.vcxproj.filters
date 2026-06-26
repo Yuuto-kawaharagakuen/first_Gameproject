@@ -26,6 +26,7 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="Countdown.cpp" />
     <ClCompile Include="MoveCrystal1.cpp" />
+    <ClCompile Include="EscapeCrystal.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -47,5 +48,6 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="Countdown.h" />
     <ClInclude Include="MoveCrystal1.h" />
+    <ClInclude Include="EscapeCrystal.h" />
   </ItemGroup>
 </Project>

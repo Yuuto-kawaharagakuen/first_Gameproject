@@ -9,6 +9,7 @@ class Goal;
 class GoalUI;
 class CountUI;
 class MoveCrystal1;
+class EscapeCrystal;
 //Gameシーンを管理するクラス
 class Game : public IGameObject
 {
@@ -28,5 +29,6 @@ public:
 	float goalUIElapsedTime;
 	SkyCube* sky;
 	MoveCrystal1* moveCrystal1;
+	EscapeCrystal* escapeCrystal;
 };
 
