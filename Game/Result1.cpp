@@ -56,6 +56,10 @@ void Result1::Update() {
 		NewGO<Title>(0, "title");
 		DeleteGO(this);
 	}
+	//7が押されたらゲームを終了する
+	if (g_pad[0]->IsTrigger(enButtonRB1)) {
+		exit(0);
+	}
 }
 //描画処理
 void Result1::Render(RenderContext& rc) {

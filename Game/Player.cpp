@@ -92,7 +92,7 @@ void Player::Move()
 	moveSpeed += right + forward;
 
 	moveSpeed.y -= 5.01f;
-	//Bボタンが押されたら移動速度2.5倍
+	//Aボタンが押されたら移動速度2.5倍
 	if (g_pad[0]->IsPress(enButtonA)) {
 		moveSpeed.x *= 2.5;
 		moveSpeed.z *= 2.5;
@@ -103,7 +103,7 @@ void Player::Move()
 		//重力をなくす
 		moveSpeed.y = 0.0f;
 		jumpState = 0;
-		//Aボタンが押されたら
+		//Bボタンが押されたら
 		if(g_pad[0]->IsTrigger(enButtonB))
 		{
 		//ジャンプさせる
