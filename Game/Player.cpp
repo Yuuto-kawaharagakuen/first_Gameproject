@@ -4,7 +4,7 @@
 #include "Player.h"
 Player::Player()
 {
-	position = { 0.0f,0.0f,0.0f };
+	position = { -1700.0f,-43.88f,450.0f };
 	//アニメーションクリップをロードする
 	animationClips[enAnimationClip_Idle].Load("Assets/animData/idle.tka");
 	animationClips[enAnimationClip_Idle].SetLoopFlag(true);
@@ -18,11 +18,8 @@ Player::Player()
 	fontRender.SetColor(g_vec4Black);
 	//ユニティちゃんのモデルを読み込む
 	modelRender.Init("Assets/modelData/unityChan.tkm", animationClips, enAnimationClip_Num, enModelUpAxisY);
-	// 初期の向きを180度回転させる（Y軸回転）
-	rotation.x = 0.0f;
-	rotation.y = 1.0f;
-	rotation.z = 0.0f;
-	rotation.w = 0.0f;
+	// 初期の向き
+	rotation.SetRotationDeg(Vector3::AxisY, 90.0f);
 	modelRender.SetRotation(rotation);
 
 	//キャラコンを初期化する
@@ -59,9 +56,9 @@ void Player::Update()
 	//アニメーションの再生
 	PlayAnimation();
 
-	wchar_t text[128];
+	/*wchar_t text[128];
 		swprintf_s(text, 128, L"X: %.2f Y: %.2f Z: %.2f", position.x, position.y, position.z);
-		fontRender.SetText(text);
+		fontRender.SetText(text);*/
 	//絵描きさんの更新処理
 	modelRender.Update();
 }
@@ -120,11 +117,11 @@ void Player::Move()
 		}
 	}
 
-	//地面についていなかったら
+	//マップ外に落下したら
 
 	if (position.y <= -1000.0f)
 	{
-		position= { 0.0f,165.0f,835.0f };
+		position= { -1700.0f,-43.88f,450.0f };
 
 		characterController.SetPosition(position);
 	}

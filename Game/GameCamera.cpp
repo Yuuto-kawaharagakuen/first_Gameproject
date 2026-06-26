@@ -12,17 +12,23 @@ GameCamera::~GameCamera()
 bool GameCamera::Start()
 {
 	//注視点から視点までのベクトルを設定
-	m_toCameraPos.Set(200.0f, 125.0f, -250.0f);
+	m_toCameraPos.Set(200.0f, 90.0f, -250.0f);
 	// 180度回転 (Y軸回転) -> x,z を反転
 	m_toCameraPos.x = -m_toCameraPos.x;
 	m_toCameraPos.z = -m_toCameraPos.z;
+
+	// 初期カメラを左に45度傾ける (Y軸周りに50度回転)
+	Quaternion qRot;
+	qRot.SetRotationDeg(Vector3::AxisY, -50.0f);
+	qRot.Apply(m_toCameraPos);
+
 	//プレイヤーのインスタンスを探す
 	m_player = FindGO<Player>("player");
 
 	//カメラのニアクリップとファークリップを設定する
 	g_camera3D->SetNear(0.1f);
 	g_camera3D->SetFar(50000.0f);
-	
+
 	return true;
 }
 void GameCamera::Update()
@@ -39,13 +45,13 @@ void GameCamera::Update()
 	float y = g_pad[0]->GetRStickYF();
 	//Y軸周りの回転
 	Quaternion qRot;
-	qRot.SetRotationDeg(Vector3::AxisY, 1.3f * x);
+	qRot.SetRotationDeg(Vector3::AxisY, 2.0f * x);
 	qRot.Apply(m_toCameraPos);
 	//X軸周りの回転。
 	Vector3 axisX;
 	axisX.Cross(Vector3::AxisY, m_toCameraPos);
 	axisX.Normalize();
-	qRot.SetRotationDeg(axisX, 1.3f * y);
+	qRot.SetRotationDeg(axisX, 2.0f * y);
 	qRot.Apply(m_toCameraPos);
 	//カメラの回転の上限をチェックする。
 	//注視点から視点までのベクトルを正規化する。
