@@ -51,6 +51,11 @@ void Result1::Update() {
 		//自身を削除する
 		DeleteGO(this);
 	}
+	//Bキーを押されたらスタート画面に戻る
+	if (g_pad[0]->IsTrigger(enButtonLB1)) {
+		NewGO<Title>(0, "title");
+		DeleteGO(this);
+	}
 }
 //描画処理
 void Result1::Render(RenderContext& rc) {

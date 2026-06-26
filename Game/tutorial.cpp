@@ -2,6 +2,7 @@
 #include "Tutorial.h"
 #include"Game.h"
 #include "sound/SoundEngine.h"
+#include"Title.h"
 Tutorial::Tutorial()
 {
 	spriteRender.Init("Assets/sprite/tutorial.dds", 1920.0f, 1080.0f);
@@ -24,7 +25,11 @@ void Tutorial::Update()
 		NewGO<Game>(0);
 		DeleteGO(this);
 	}
-
+	//Bキーを押されたらスタート画面に戻る
+	if (g_pad[0]->IsTrigger(enButtonLB1)) {
+		NewGO<Title>(0, "title");
+		DeleteGO(this);
+	}
 }
 void Tutorial::Render(RenderContext& rc)
 {
