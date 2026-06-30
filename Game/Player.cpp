@@ -88,7 +88,7 @@ void Player::Move()
 	//移動速度にスティックの入力量を加算する
 	moveSpeed += right + forward;
 
-	moveSpeed.y -= 5.01f;
+	moveSpeed.y -= 10.0f;
 	//Aボタンが押されたら移動速度2.5倍
 	if (g_pad[0]->IsPress(enButtonA)) {
 		moveSpeed.x *= 2.5;
@@ -104,7 +104,7 @@ void Player::Move()
 		if(g_pad[0]->IsTrigger(enButtonB))
 		{
 		//ジャンプさせる
-			moveSpeed.y = 360.0f;	
+			moveSpeed.y = 580.0f;	
 		}
 	}
 	else if (characterController.IsOnGround() == false) {
@@ -112,7 +112,7 @@ void Player::Move()
 		if (g_pad[0]->IsTrigger(enButtonB) and jumpState == 0)
 		{
 			modelRender.PlayAnimation(enAnimationClip_Idle);
-			moveSpeed.y = 360.0f;
+			moveSpeed.y = 580.0f;
 			jumpState = 1;
 		}
 	}

@@ -10,8 +10,8 @@ GoalUI::~GoalUI()
 
 }
 void GoalUI::Update() {
-	wchar_t text[256];
-	swprintf_s(text, 256, L"ゴールが出現しました!");
+	wchar_t text[20];
+	swprintf_s(text, 20, L"ゴールが出現しました!");
 	fontRender.SetText(text);
 	fontRender.SetPosition(position);
 }

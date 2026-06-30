@@ -24,16 +24,16 @@ void CountUI::Update()
 		elapsedTime += g_gameTime->GetFrameDeltaTime();
 	}
 
-	wchar_t text[256];
-	swprintf_s(text, 256, L"手に入れたクリスタルの数:%d個", UInum);
+	wchar_t text[50];
+	swprintf_s(text, 50, L"手に入れたクリスタルの数:%d個", UInum);
 	fontRender.SetText(text);
 	fontRender.SetPosition(position);
 	player = FindGO<Player>("player");
 	// 経過時間の「秒部分」ではなく、累積の経過秒数を使う
 	int totalSeconds = (int)elapsedTime;
 	if (totalSeconds < 1) totalSeconds = 1; // ゼロ除算回避
-	// 既存の係数(50 と *5)を維持して合算した形で計算する
-	Score = (player->crystalCount * 250) / totalSeconds;
+	
+	Score = player->crystalCount * 1000 + 10000-totalSeconds*30;
 }
 
 void CountUI::Render(RenderContext& rc)

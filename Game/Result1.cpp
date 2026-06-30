@@ -1,4 +1,4 @@
-#include "stdafx.h"
+﻿#include "stdafx.h"
 #include "Result1.h"
 #include"Title.h"
 #include"sound/SoundEngine.h"
@@ -29,13 +29,13 @@ void Result1::Update() {
 	//クリア時間をフォント表示
 	int minutes = (int)elapsedTime / 60;
 	int seconds = (int)elapsedTime % 60;
-	wchar_t text[256];
-	swprintf_s(text, 256, L"あなたのクリア時間: %d分:%02d秒", minutes, seconds);
+	wchar_t text[100];
+	swprintf_s(text, 100, L"あなたのクリア時間: %d分:%02d秒", minutes, seconds);
 	fontRender.SetText(text);
 
 	// スコア表示更新
-	wchar_t scoreText[256];
-	swprintf_s(scoreText, 256, L"あなたのスコア: %d", score);
+	wchar_t scoreText[50];
+	swprintf_s(scoreText, 50, L"あなたのスコア: %d", score);
 	scoreRender.SetText(scoreText);
 
 	//Aボタンが押されたら
