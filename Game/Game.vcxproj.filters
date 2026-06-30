@@ -27,6 +27,8 @@
     <ClCompile Include="Countdown.cpp" />
     <ClCompile Include="MoveCrystal1.cpp" />
     <ClCompile Include="EscapeCrystal.cpp" />
+    <ClCompile Include="RankingManager.cpp" />
+    <ClCompile Include="RankingScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -49,5 +51,7 @@
     <ClInclude Include="Countdown.h" />
     <ClInclude Include="MoveCrystal1.h" />
     <ClInclude Include="EscapeCrystal.h" />
+    <ClInclude Include="RankingManager.h" />
+    <ClInclude Include="RankingScene.h" />
   </ItemGroup>
 </Project>

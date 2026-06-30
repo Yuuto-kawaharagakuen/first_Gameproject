@@ -64,7 +64,7 @@ Game::Game()
 	moveCrystal1->firstPosition = moveCrystal1->position;
 
 	EscapeCrystal* escapeCrystal = NewGO<EscapeCrystal>(0, "crystal");
-	escapeCrystal->position = { 800.0f,1010.0f,-200.0f };
+	escapeCrystal->position = { 600.0f,1010.0f,-150.0f };
 	escapeCrystal->firstPosition = escapeCrystal->position;
 
 	goal = NewGO<Goal>(0, "goal");

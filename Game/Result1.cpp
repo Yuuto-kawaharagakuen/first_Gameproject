@@ -46,8 +46,10 @@ void Result1::Update() {
 			ResultBGM->Release();
 			ResultBGM = nullptr;
 		}
-		//タイトルのオブジェクトを作る
-		NewGO<Title>(0, "title");
+		auto* ranking = NewGO<RankingScene>(0, "ranking");
+		ranking->SetScore(score);//スコアを渡す
+		////タイトルのオブジェクトを作る
+		//NewGO<Title>(0, "title");
 		//自身を削除する
 		DeleteGO(this);
 	}
