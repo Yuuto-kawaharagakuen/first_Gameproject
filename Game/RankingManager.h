@@ -1,11 +1,11 @@
 ﻿#pragma once
-#include<ctime>
-static const int RANKING_MAX = 5;
+#include <time.h>
+static const int RANKING_MAX = 5;   //static→　このソースファイル（.cpp/.h）の中だけでしか見えない変数にする
 
-struct RankingEntry
-{
+struct RankingEntry        //struct→複数のデータをひとまとめにして、1つの新しい型を作る　今回ではint,bool,dateをまとめる
+{                          //class→データ＋それを操作する関数（メソッド）を持つもの　struct→複数の変数をまとめるだけ
 	int score;
-	time_t date;
+	time_t date;           //1970年1月1日からの経過秒数
 	bool isNew;
 };
 class RankingManager
