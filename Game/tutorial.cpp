@@ -31,9 +31,9 @@ void Tutorial::Update()
 		DeleteGO(this);
 	}
 	//7が押されたらゲームを終了する
-	if (g_pad[0]->IsTrigger(enButtonRB1)) {	
+	/*if (g_pad[0]->IsTrigger(enButtonRB1)) {	
 		exit(0);
-	}
+	}*/
 }
 void Tutorial::Render(RenderContext& rc)
 {

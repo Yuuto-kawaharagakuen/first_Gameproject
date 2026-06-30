@@ -32,9 +32,9 @@ void GameClear::Update() {
 		DeleteGO(this);
 	}
 	//7が押されたらゲームを終了する
-	if (g_pad[0]->IsTrigger(enButtonRB1)) {
+	/*if (g_pad[0]->IsTrigger(enButtonRB1)) {
 		exit(0);
-	}
+	}*/
 }
 
 void GameClear::Render(RenderContext& rc) {
