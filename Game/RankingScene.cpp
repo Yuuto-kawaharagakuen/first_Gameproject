@@ -11,9 +11,9 @@ RankingScene::RankingScene() {
 	m_titleRender.SetScale(2.5f);
 	m_titleRender.SetText(L"ランキング");
 
-	for (int i = 0;i < RANKING_MAX;i++) {
-		m_rankingRender[i].SetPosition({ -300.0f,250.0f - i * 100.0f,0.0f });
-		m_rankingRender[i].SetColor(g_vec4Black);
+	for (int i = 0;i < RankingManager::RANKING_MAX;i++) {            //::=スコープ解決演算子、「どのクラス（または名前空間）の中にあるものか」を指定するための記号
+		m_rankingRender[i].SetPosition({ -300.0f,250.0f - i * 100.0f,0.0f });      //g_rankingManager.TryRegister(score);  //  .=変数  インスタンス（実体）に対して使う
+        m_rankingRender[i].SetColor(g_vec4Black);                                  //RankingManager::RANKING_MAX;          // ::=クラスそのものに対して使う
 		m_rankingRender[i].SetScale(1.8f);
 
 		//Newラベル
@@ -30,7 +30,7 @@ RankingScene::RankingScene() {
 
 RankingScene::~RankingScene(){}
 
-void RankingScene::SetScore(int s) {
+void RankingScene::SetScore(int s) {               //voidはreturnを使わないであろう関数
 	m_currentScore = s;
 	/*m_ranking.Load(L"Assets/ranking.dat");*/
 	m_isRankedIn = g_rankingManager.TryRegister(m_currentScore); //グローバル
@@ -40,8 +40,9 @@ void RankingScene::SetScore(int s) {
 void RankingScene::Update() {
 	//ランキング更新処理
 	for (int i = 0;i < g_rankingManager.GetCount();i++) {
-		const auto& entry = g_rankingManager.Get(i);
-
+		const auto& entry = g_rankingManager.Get(i);            //autoは型を自分で推測してくれる   型名が長いのでautoで省略
+		                                                             //auto が便利な場面  → 型名が長い・型が明らかなとき
+		                                                             //autoを避ける場面   → 型そのものが重要な意味を持つとき
 		wchar_t buf[64];
 		//ランクインした行にNew!をつける
 		swprintf_s(buf, L"%d位  %d点", i + 1, entry.score);

@@ -12,11 +12,11 @@ public:
 private:
 	/*RankingManager m_ranking;*/
 	int            m_currentScore = 0;
-	bool           m_isRankedIn = false; //ランクインしたか
+	bool           m_isRankedIn = false; //ランクインしたか していないか
 
-	FontRender     m_titleRender;
-	FontRender     m_rankingRender[RANKING_MAX];
-	FontRender     m_newLabelRender[RANKING_MAX]; //New用
+	FontRender     m_titleRender;  //「ランキング」s
+	FontRender     m_rankingRender[RankingManager::RANKING_MAX];  //順位と点数を表示するRender
+	FontRender     m_newLabelRender[RankingManager::RANKING_MAX]; //New用
 	FontRender     m_currentScoreRender; //圏外時のみ
 };
 
