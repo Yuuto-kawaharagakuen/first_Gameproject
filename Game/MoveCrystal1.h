@@ -25,10 +25,11 @@ public:
 	Player* player;		//プレイヤー。
 	FontRender fontRender; //フォントレンダーを使用
 
-	// Xキーで一度だけ5秒間動きを止めるためのフラグ/タイマー
+	// Yボタンで一度だけ3秒間動きを止めるためのフラグ/タイマー
+	// 使用後は30秒のクールダウンが入る
 	bool isStopped;
-	bool stopUsed;
-	float stopTimer;
+	bool stopUsed; // クールダウン中は true
+	float stopTimer; // 停止残り時間(秒)
 	bool prevXDown;
 };
 

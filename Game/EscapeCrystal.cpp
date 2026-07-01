@@ -40,7 +40,7 @@ void EscapeCrystal::Update()
 
 	//移動処理。
 	// Xボタンで一度だけ3秒間停止させる処理
-	if (!stopUsed && g_pad[0]->IsTrigger(enButtonX))
+	if (!stopUsed && g_pad[0]->IsTrigger(enButtonY))
 	{
 		isStopped = true;
 		stopUsed = true; // 一度だけ
@@ -87,25 +87,28 @@ void EscapeCrystal::Update()
 
 void EscapeCrystal::Move()
 {
-	if (position.x >= 1200) {
-		position.x =rand()% 450+600;
+	if (number < 3) {
+		if (position.x >= 1200) {
+			position.x = rand() % 450 + 600;
+			++number;
+		}
+		if (position.x <= 500) {
+			position.x = rand() % 450 + 600;
+			++number;
+		}
+		if (position.z >= 320) {
+			position.z = rand() % 800 - 950;
+			++number;
+		}
+		if (position.z <= -1000) {
+			position.z = rand() % 800 - 700;
+			++number;
+		}
 	}
-	if (position.x <= 500) {
-
-		position.x = rand()% 450 + 600;
-	}
-	if (position.z >= 320) {
-
-		position.z = rand()% 800- 950;
-	}
-	if (position.z <= -1000) {
-		position.z = rand()% 800-700;
-	}
-
 	// プレイヤーから常に200.0fの距離を保つ処理
 	Vector3 toPlayer = position - player->position;
 	float distance = toPlayer.Length();
-	if (toPlayer.Length()<=200.0f) {
+	if (toPlayer.Length()<=200.0f and number<3) {
 		if (distance > 0.0f && distance != 200.0f)
 		{
 			toPlayer.Normalize();

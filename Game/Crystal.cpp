@@ -41,7 +41,7 @@ void Crystal::Update()
 
 	//移動処理。
 	// Xボタンで一度だけ3秒間停止させる処理
-	if (!stopUsed && g_pad[0]->IsTrigger(enButtonX))
+	if (!stopUsed && g_pad[0]->IsTrigger(enButtonY))
 	{
 		isStopped = true;
 		stopUsed = true; // 一度だけ

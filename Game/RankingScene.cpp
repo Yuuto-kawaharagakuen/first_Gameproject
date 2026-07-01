@@ -26,6 +26,11 @@ RankingScene::RankingScene() {
 	m_currentScoreRender.SetPosition({ -400.0f,-300.0f,0.0f });
 	m_currentScoreRender.SetColor(g_vec4Black);
 	m_currentScoreRender.SetScale(1.8f);
+
+	NextRender.SetPosition({ 380.0f,515.0f,0.0f });
+	NextRender.SetColor(g_vec4Black);
+	NextRender.SetText(L"NEXT-タイトルへ");
+	NextRender.SetScale(1.5f);
 }
 
 RankingScene::~RankingScene(){}
@@ -64,7 +69,12 @@ void RankingScene::Update() {
 		m_currentScoreRender.SetText(scoreBuf);
 	}
 
-	if (g_pad[0]->IsTrigger(enButtonA)) {
+	if (g_pad[0]->IsTrigger(enButtonB)) {
+		NewGO<Title>(0, "title");
+		DeleteGO(this);
+	}
+	
+	if (g_pad[0]->IsTrigger(enButtonRB1)) {
 		NewGO<Title>(0, "title");
 		DeleteGO(this);
 	}
@@ -72,6 +82,7 @@ void RankingScene::Update() {
 
 void RankingScene::Render(RenderContext& rc) {
 	m_titleRender.Draw(rc);
+	NextRender.Draw(rc);
 	for (int i = 0;i < g_rankingManager.GetCount();i++) {
 		m_newLabelRender[i].Draw(rc);
 		m_rankingRender[i].Draw(rc);

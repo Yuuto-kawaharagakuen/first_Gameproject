@@ -19,7 +19,7 @@ Game::Game()
 {   //背景を生成
 	sky = NewGO<SkyCube>(0, "skycube");
 	sky->SetType(enSkyCubeType_DayToon);
-	g_renderingEngine->SetAmbientByIBLTexture(sky->GetTextureFilePath(), 0.5f);
+	g_renderingEngine->SetAmbientByIBLTexture(sky->GetTextureFilePath(), 0.3f);
 
 	//プレイヤーのオブジェクトを作る
 	player = NewGO<Player>(0, "player");
@@ -119,7 +119,7 @@ void Game::Update()
 	if (player->crystalCount >= 3) {
 		//goalUIがnullptr(中身が空)のときにゴールを生成
 		if (!goalUI) {
-			goal->position = { 823.5f, 967.1f, -279.9f };
+			goal->position = { 570.0f, 967.1f, 600.0f };
 			goalUI = NewGO<GoalUI>(0, "goalUI");
 		}
 	}
@@ -139,7 +139,7 @@ void Game::Update()
 		DeleteGO(this);
 	}
 	//Bキーを押されたらスタート画面に戻る
-	if (g_pad[0]->IsTrigger(enButtonLB1)) {
+	if (g_pad[0]->IsTrigger(enButtonRB1)) {
 		NewGO<Title>(0,"title");
 		DeleteGO(this);
 	}

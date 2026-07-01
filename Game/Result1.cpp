@@ -13,6 +13,12 @@ Result1::Result1() {
 	scoreRender.SetPosition({ -600.0f,-50.0f,0.0f });
 	scoreRender.SetColor(g_vec4Black);
 	scoreRender.SetScale(2.0f);
+
+	//ランキングへ
+	NextRender.SetPosition({ 250.0f,525.0f,0.0f });
+	NextRender.SetColor(g_vec4Black);
+	NextRender.SetText(L"NEXT-ランキングへ");
+	NextRender.SetScale(1.5f);
 	//リザルト画面のBGMを読み込む
 	g_soundEngine->ResistWaveFileBank(4, "Assets/sound/result.wav");
 	//リザルト画面のBGMを再生する。
@@ -39,7 +45,7 @@ void Result1::Update() {
 	scoreRender.SetText(scoreText);
 
 	//Aボタンが押されたら
-	if (g_pad[0]->IsTrigger(enButtonA)) {
+	if (g_pad[0]->IsTrigger(enButtonB)) {
 		// BGM を止めて解放する
 		if (ResultBGM) {
 			ResultBGM->Stop();
@@ -54,7 +60,7 @@ void Result1::Update() {
 		DeleteGO(this);
 	}
 	//Bキーを押されたらスタート画面に戻る
-	if (g_pad[0]->IsTrigger(enButtonLB1)) {
+	if (g_pad[0]->IsTrigger(enButtonRB1)) {
 		NewGO<Title>(0, "title");
 		DeleteGO(this);
 	}
@@ -67,6 +73,7 @@ void Result1::Update() {
 void Result1::Render(RenderContext& rc) {
 	spriteRender.Draw(rc);
 	fontRender.Draw(rc);
+	NextRender.Draw(rc);
 	// スコアも描画する（経過時間と同じタイミングで表示される）
 	scoreRender.Draw(rc);
 }

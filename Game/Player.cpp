@@ -56,9 +56,9 @@ void Player::Update()
 	//アニメーションの再生
 	PlayAnimation();
 
-	/*wchar_t text[128];
-		swprintf_s(text, 128, L"X: %.2f Y: %.2f Z: %.2f", position.x, position.y, position.z);
-		fontRender.SetText(text);*/
+	//wchar_t text[128];
+	//	swprintf_s(text, 128, L"X: %.2f Y: %.2f Z: %.2f", position.x, position.y, position.z);
+	//	fontRender.SetText(text);
 	//絵描きさんの更新処理
 	modelRender.Update();
 }
@@ -90,7 +90,7 @@ void Player::Move()
 
 	moveSpeed.y -= 10.0f;
 	//Aボタンが押されたら移動速度2.5倍
-	if (g_pad[0]->IsPress(enButtonA)) {
+	if (g_pad[0]->IsPress(enButtonB)) {
 		moveSpeed.x *= 2.5;
 		moveSpeed.z *= 2.5;
 	}
@@ -101,7 +101,7 @@ void Player::Move()
 		moveSpeed.y = 0.0f;
 		jumpState = 0;
 		//Bボタンが押されたら
-		if(g_pad[0]->IsTrigger(enButtonB))
+		if(g_pad[0]->IsTrigger(enButtonA))
 		{
 		//ジャンプさせる
 			moveSpeed.y = 580.0f;	
@@ -109,7 +109,7 @@ void Player::Move()
 	}
 	else if (characterController.IsOnGround() == false) {
 
-		if (g_pad[0]->IsTrigger(enButtonB) and jumpState == 0)
+		if (g_pad[0]->IsTrigger(enButtonA) and jumpState == 0)
 		{
 			modelRender.PlayAnimation(enAnimationClip_Idle);
 			moveSpeed.y = 580.0f;
@@ -156,7 +156,7 @@ void Player::ManageState()
 		return;
 	}
 	//Bボタンを押しているときかつ、動いているとき
-	if (g_pad[0]->IsPress(enButtonA) and (fabsf(moveSpeed.x) >= 0.001f or fabsf(moveSpeed.z) >= 0.001f)) {
+	if (g_pad[0]->IsPress(enButtonB) and (fabsf(moveSpeed.x) >= 0.001f or fabsf(moveSpeed.z) >= 0.001f)) {
 		playerState = 3;
 	}
 

@@ -15,7 +15,7 @@ void Goal::Update() {
 	modelRender.Update();
 	modelRender.SetPosition(position);
 	modelRender.SetScale(Vector3(5.0f, 5.0f, 5.0f));
-	rot.SetRotationDegY(-90.0f);
+	rot.SetRotationDegY(-180.0f);
 	modelRender.SetRotation(rot);
 	// プレイヤーが接触してゴールする処理はゲームアクティブ時のみ行う
 	if (g_IsGameActive)

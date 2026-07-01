@@ -20,13 +20,13 @@ void Tutorial::Update()
 	swprintf_s(text, 256, L"           ゲーム説明\n\n動き回るクリスタルをできるだけ短時間で\nたくさん集めてゴールしよう！\n\nクリスタルを３個以上集めると\nゴールが現れるぞ！\n\n\n          　　　　　Aボタンでゲーム開始");
 	fontRender.SetText(text);
 	
-	if (g_pad[0]->IsTrigger(enButtonA))
+	if (g_pad[0]->IsTrigger(enButtonB))
 	{
 		NewGO<Game>(0);
 		DeleteGO(this);
 	}
 	//Bキーを押されたらスタート画面に戻る
-	if (g_pad[0]->IsTrigger(enButtonLB1)) {
+	if (g_pad[0]->IsTrigger(enButtonRB1)) {
 		NewGO<Title>(0, "title");
 		DeleteGO(this);
 	}

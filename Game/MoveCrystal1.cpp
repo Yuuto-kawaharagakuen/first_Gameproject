@@ -40,8 +40,7 @@ void MoveCrystal1::Update()
 	}
 
 	//移動処理。
-	// Xボタンで一度だけ3秒間停止させる処理
-	if (!stopUsed && g_pad[0]->IsTrigger(enButtonX))
+	if (!stopUsed && g_pad[0]->IsTrigger(enButtonY))
 	{
 		isStopped = true;
 		stopUsed = true; // 一度だけ
@@ -57,7 +56,6 @@ void MoveCrystal1::Update()
 	}
 	else
 	{
-		// 固定フレームレート(60FPS)を想定してタイマーを減算
 		stopTimer -= 1.0f / 60.0f;
 		if (stopTimer <= 0.0f)
 		{

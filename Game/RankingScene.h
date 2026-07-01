@@ -18,5 +18,6 @@ private:
 	FontRender     m_rankingRender[RankingManager::RANKING_MAX];  //順位と点数を表示するRender
 	FontRender     m_newLabelRender[RankingManager::RANKING_MAX]; //New用
 	FontRender     m_currentScoreRender; //圏外時のみ
+	FontRender     NextRender; //次のシーンに行くための案内
 };
 

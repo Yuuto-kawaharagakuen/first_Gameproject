@@ -14,6 +14,7 @@ public:
 	//メンバ変数
 	SpriteRender spriteRender;
 	FontRender fontRender;
+	FontRender NextRender;
 	SoundSource* ResultBGM;
 	// スコア表示用フォントと値
 	FontRender scoreRender;

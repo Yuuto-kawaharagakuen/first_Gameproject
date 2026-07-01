@@ -30,5 +30,6 @@ public:
 	bool stopUsed;
 	float stopTimer;
 	bool prevXDown;
+	int number=0;
 };
 
