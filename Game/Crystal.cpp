@@ -17,7 +17,6 @@ Crystal::Crystal() {
 
 	// 初期化
 	isStopped = false;
-	stopUsed = false;
 	stopTimer = 0.0f;
 	prevXDown = false;
 }
@@ -41,11 +40,11 @@ void Crystal::Update()
 
 	//移動処理。
 	// Xボタンで一度だけ3秒間停止させる処理
-	if (!stopUsed && g_pad[0]->IsTrigger(enButtonY))
+	if (cooldownTimer <= 0.0f && g_pad[0]->IsTrigger(enButtonY))
 	{
 		isStopped = true;
-		stopUsed = true; // 一度だけ
-		stopTimer = 3.0f; // 3秒
+		stopTimer = 3.0f;      // 3秒停止
+		cooldownTimer = 30.0f; // 30秒後に再び使える
 	}
 
 	// 停止中は移動・回転を行わない
@@ -65,6 +64,10 @@ void Crystal::Update()
 		}
 	}
 
+	if (cooldownTimer > 0.0f)
+	{
+		cooldownTimer -= 1.0f / 60.0f;
+	}
 	//絵描きさんの更新処理。
 	modelRender.Update();
 
@@ -130,6 +133,7 @@ void Crystal::Update()
 //
 //	modelRender.SetPosition(position);
 //}
+
 
 //回転処理
 void Crystal::Rotation()

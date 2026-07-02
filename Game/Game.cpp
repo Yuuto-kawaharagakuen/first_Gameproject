@@ -48,16 +48,32 @@ Game::Game()
 	crystal3->firstPosition = crystal3->position;
 
 	Crystal* crystal4 = NewGO<Crystal>(0, "crystal");
-	crystal4->position = { 0.0f,90000.0f,0.0f };
+	crystal4->position = { 0.0f,-300.0f,1200.0f };
 	crystal4->firstPosition = crystal4->position;
 
 	Crystal* crystal5 = NewGO<Crystal>(0, "crystal");
-	crystal5->position = { 0.0f,90000.0f,0.0f };
+	crystal5->position = { -1049.8f,-30.03f, -239.45f };
 	crystal5->firstPosition = crystal5->position;
 
 	Crystal* crystal6 = NewGO<Crystal>(0, "crystal");
-	crystal6->position = { 0.0f,90000.0f,0.0f };
+	crystal6->position = { 700.0f,10.40f, -250.0f };
 	crystal6->firstPosition = crystal6->position;
+
+	Crystal* crystal7 = NewGO<Crystal>(0, "crystal");
+	crystal7->position = { 1000.0f,10.39f,-1000.0f };
+	crystal7->firstPosition = crystal7->position;
+
+	Crystal* crystal8 = NewGO<Crystal>(0, "crystal");
+	crystal8->position = { -1685.0f,10.0f, -1500.0f };
+	crystal8->firstPosition = crystal8->position;
+
+	Crystal* crystal9 = NewGO<Crystal>(0, "crystal");
+	crystal9->position = { 1250.0f,623.0f, -700.0f };
+	crystal9->firstPosition = crystal9->position;
+
+	Crystal* crystal10 = NewGO<Crystal>(0, "crystal");
+	crystal10->position = { 500.0f,285.3f,900.0f };
+	crystal10->firstPosition = crystal10->position;
 
 	MoveCrystal1* moveCrystal1 = NewGO<MoveCrystal1>(0, "crystal");
 	moveCrystal1->position = { 0.0f,-300.0f,1200.0f };
@@ -116,7 +132,7 @@ Game::~Game()
 void Game::Update()
 {
 
-	if (player->crystalCount >= 3) {
+	if (player->crystalCount >= 5) {
 		//goalUIがnullptr(中身が空)のときにゴールを生成
 		if (!goalUI) {
 			goal->position = { 570.0f, 967.1f, 600.0f };

@@ -28,7 +28,7 @@ public:
 	// Yボタンで一度だけ3秒間動きを止めるためのフラグ/タイマー
 	// 使用後は30秒のクールダウンが入る
 	bool isStopped;
-	bool stopUsed; // クールダウン中は true
+	float cooldownTimer;
 	float stopTimer; // 停止残り時間(秒)
 	bool prevXDown;
 };

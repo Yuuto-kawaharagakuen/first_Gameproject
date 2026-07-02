@@ -56,9 +56,9 @@ void Player::Update()
 	//アニメーションの再生
 	PlayAnimation();
 
-	//wchar_t text[128];
-	//	swprintf_s(text, 128, L"X: %.2f Y: %.2f Z: %.2f", position.x, position.y, position.z);
-	//	fontRender.SetText(text);
+	/*wchar_t text[128];
+		swprintf_s(text, 128, L"X: %.2f Y: %.2f Z: %.2f", position.x, position.y, position.z);
+		fontRender.SetText(text);*/
 	//絵描きさんの更新処理
 	modelRender.Update();
 }

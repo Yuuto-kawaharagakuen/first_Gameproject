@@ -24,7 +24,7 @@ GameClear::~GameClear()
 
 void GameClear::Update() {
 	// Aボタンが押されたら Result1 に移動し、経過時間とスコアを渡す
-	if (g_pad[0]->IsTrigger(enButtonB)) {
+	if (g_pad[0]->IsTrigger(enButtonA)) {
 		Result1* r1 = NewGO<Result1>(0, "result1");
 		r1->SetElapsedTime(elapsedTime);
 		r1->SetScore(score);

@@ -69,7 +69,7 @@ void RankingScene::Update() {
 		m_currentScoreRender.SetText(scoreBuf);
 	}
 
-	if (g_pad[0]->IsTrigger(enButtonB)) {
+	if (g_pad[0]->IsTrigger(enButtonA)) {
 		NewGO<Title>(0, "title");
 		DeleteGO(this);
 	}

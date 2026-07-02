@@ -45,7 +45,7 @@ void Result1::Update() {
 	scoreRender.SetText(scoreText);
 
 	//Aボタンが押されたら
-	if (g_pad[0]->IsTrigger(enButtonB)) {
+	if (g_pad[0]->IsTrigger(enButtonA)) {
 		// BGM を止めて解放する
 		if (ResultBGM) {
 			ResultBGM->Stop();

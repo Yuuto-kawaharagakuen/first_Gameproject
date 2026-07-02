@@ -16,7 +16,6 @@ EscapeCrystal::EscapeCrystal() {
 
 	// 初期化
 	isStopped = false;
-	stopUsed = false;
 	stopTimer = 0.0f;
 	prevXDown = false;
 }
@@ -40,11 +39,11 @@ void EscapeCrystal::Update()
 
 	//移動処理。
 	// Xボタンで一度だけ3秒間停止させる処理
-	if (!stopUsed && g_pad[0]->IsTrigger(enButtonY))
+	if (cooldownTimer <= 0.0f && g_pad[0]->IsTrigger(enButtonY))
 	{
 		isStopped = true;
-		stopUsed = true; // 一度だけ
 		stopTimer = 3.0f; // 3秒
+		cooldownTimer = 30.0f; // 30秒後に再び使える
 	}
 
 	// 停止中は移動・回転を行わない
@@ -64,6 +63,10 @@ void EscapeCrystal::Update()
 		}
 	}
 
+	if (cooldownTimer > 0.0f)
+	{
+		cooldownTimer -= 1.0f / 60.0f;
+	}
 	//絵描きさんの更新処理。
 	modelRender.Update();
 
@@ -87,28 +90,25 @@ void EscapeCrystal::Update()
 
 void EscapeCrystal::Move()
 {
-	if (number < 3) {
 		if (position.x >= 1200) {
 			position.x = rand() % 450 + 600;
-			++number;
 		}
 		if (position.x <= 500) {
 			position.x = rand() % 450 + 600;
-			++number;
+			
 		}
 		if (position.z >= 320) {
 			position.z = rand() % 800 - 950;
-			++number;
+			
 		}
 		if (position.z <= -1000) {
 			position.z = rand() % 800 - 700;
-			++number;
+			
 		}
-	}
 	// プレイヤーから常に200.0fの距離を保つ処理
 	Vector3 toPlayer = position - player->position;
 	float distance = toPlayer.Length();
-	if (toPlayer.Length()<=200.0f and number<3) {
+	if (toPlayer.Length()<=200.0f) {
 		if (distance > 0.0f && distance != 200.0f)
 		{
 			toPlayer.Normalize();

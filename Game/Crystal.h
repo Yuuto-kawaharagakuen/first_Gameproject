@@ -27,7 +27,7 @@ public:
 
 	// Xキーで一度だけ5秒間動きを止めるためのフラグ/タイマー
 	bool isStopped;
-	bool stopUsed;
+	float cooldownTimer;
 	float stopTimer;
 	bool prevXDown;
 };

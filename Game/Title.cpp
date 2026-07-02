@@ -21,7 +21,7 @@ Title::~Title()
 
 void Title::Update()
 {
-	if (g_pad[0]->IsTrigger(enButtonB))
+	if (g_pad[0]->IsTrigger(enButtonA))
 	{   
 		//BGMが一瞬重複していたので
 		if (titleBGM) {

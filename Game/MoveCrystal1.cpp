@@ -17,7 +17,6 @@ MoveCrystal1::MoveCrystal1() {
 
 	// 初期化
 	isStopped = false;
-	stopUsed = false;
 	stopTimer = 0.0f;
 	prevXDown = false;
 }
@@ -40,11 +39,11 @@ void MoveCrystal1::Update()
 	}
 
 	//移動処理。
-	if (!stopUsed && g_pad[0]->IsTrigger(enButtonY))
+	if (cooldownTimer <= 0.0f && g_pad[0]->IsTrigger(enButtonY))
 	{
 		isStopped = true;
-		stopUsed = true; // 一度だけ
 		stopTimer = 3.0f; // 3秒
+		cooldownTimer = 30.0f;
 	}
 
 	// 停止中は移動・回転を行わない
@@ -63,6 +62,10 @@ void MoveCrystal1::Update()
 		}
 	}
 
+	if (cooldownTimer > 0.0f)
+	{
+		cooldownTimer -= 1.0f / 60.0f;
+	}
 	//絵描きさんの更新処理。
 	modelRender.Update();
 

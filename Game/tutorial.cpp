@@ -17,10 +17,10 @@ Tutorial::~Tutorial() {
 void Tutorial::Update()
 {
 	wchar_t text[256];
-	swprintf_s(text, 256, L"           ゲーム説明\n\n動き回るクリスタルをできるだけ短時間で\nたくさん集めてゴールしよう！\n\nクリスタルを３個以上集めると\nゴールが現れるぞ！\n\n\n          　　　　　Aボタンでゲーム開始");
+	swprintf_s(text, 256, L"           ゲーム説明\n\n動き回るクリスタルをできるだけ短時間で\nたくさん集めてゴールしよう！\n\nクリスタルを5個以上集めると\nゴールが現れるぞ！\n\n\n          　　　　　Aボタンでゲーム開始");
 	fontRender.SetText(text);
 	
-	if (g_pad[0]->IsTrigger(enButtonB))
+	if (g_pad[0]->IsTrigger(enButtonA))
 	{
 		NewGO<Game>(0);
 		DeleteGO(this);
