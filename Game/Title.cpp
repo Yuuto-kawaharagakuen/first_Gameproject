@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Title.h"
-#include"Tutorial.h"
+#include"Controller.h"
 #include "sound/SoundEngine.h"
 Title::Title()
 {
@@ -29,7 +29,7 @@ void Title::Update()
 			titleBGM->Release();
 			titleBGM = nullptr;
 		}
-		NewGO<Tutorial>(0);
+		NewGO<Controller>(0);
 		DeleteGO(this);
 	}
 	//7が押されたらゲームを終了する

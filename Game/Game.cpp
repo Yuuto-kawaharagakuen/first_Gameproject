@@ -15,6 +15,7 @@
 #include "Countdown.h"
 #include"MoveCrystal1.h"
 #include"EscapeCrystal.h"
+#include<time.h>
 Game::Game()
 {   //背景を生成
 	sky = NewGO<SkyCube>(0, "skycube");

@@ -29,6 +29,7 @@
     <ClCompile Include="EscapeCrystal.cpp" />
     <ClCompile Include="RankingManager.cpp" />
     <ClCompile Include="RankingScene.cpp" />
+    <ClCompile Include="Controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -53,5 +54,6 @@
     <ClInclude Include="EscapeCrystal.h" />
     <ClInclude Include="RankingManager.h" />
     <ClInclude Include="RankingScene.h" />
+    <ClInclude Include="Controller.h" />
   </ItemGroup>
 </Project>

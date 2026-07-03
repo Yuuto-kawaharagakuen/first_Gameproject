@@ -40,5 +40,7 @@ public:
 	int runnningState = 0;
 	int jumpState;
 	bool resetState;
+	// ダッシュ(Bボタンで切り替え)
+	bool isDashing = false;
 };
 

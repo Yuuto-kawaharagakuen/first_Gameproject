@@ -89,10 +89,14 @@ void Player::Move()
 	moveSpeed += right + forward;
 
 	moveSpeed.y -= 10.0f;
-	//Aボタンが押されたら移動速度2.5倍
-	if (g_pad[0]->IsPress(enButtonB)) {
-		moveSpeed.x *= 2.5;
-		moveSpeed.z *= 2.5;
+	// Bボタンを押すたびにダッシュ/ウォークを切り替える
+	if (g_pad[0]->IsTrigger(enButtonB)) {
+		isDashing = !isDashing;
+	}
+	// ダッシュ有効なら速度を2.5倍にする
+	if (isDashing) {
+		moveSpeed.x *= 2.5f;
+		moveSpeed.z *= 2.5f;
 	}
 	//地面についていたら
 	if (characterController.IsOnGround())
@@ -155,8 +159,8 @@ void Player::ManageState()
 		//ここでManageStateの処理を終わらせる
 		return;
 	}
-	//Bボタンを押しているときかつ、動いているとき
-	if (g_pad[0]->IsPress(enButtonB) and (fabsf(moveSpeed.x) >= 0.001f or fabsf(moveSpeed.z) >= 0.001f)) {
+	// ダッシュがオンかつ、動いているとき
+	if (isDashing && (fabsf(moveSpeed.x) >= 0.001f or fabsf(moveSpeed.z) >= 0.001f)) {
 		playerState = 3;
 	}
 
