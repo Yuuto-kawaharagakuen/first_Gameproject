@@ -1,5 +1,7 @@
 #pragma once
 #include"sound/SoundSource.h"
+#include <random>
+
 
 class Player;
 class GameCamera;
@@ -30,5 +32,17 @@ public:
 	SkyCube* sky;
 	MoveCrystal1* moveCrystal1;
 	EscapeCrystal* escapeCrystal;
+
+	std::mt19937& GetRandomEngine()
+	{
+		static std::mt19937 engine(std::random_device{}());
+		return engine;
+	}
+
+	float GetRandomValue(float min, float max)
+	{
+		std::uniform_real_distribution<float> dist(min, max);
+		return dist(GetRandomEngine());
+	}
 };
 

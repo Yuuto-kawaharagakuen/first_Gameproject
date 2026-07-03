@@ -15,7 +15,7 @@
 #include "Countdown.h"
 #include"MoveCrystal1.h"
 #include"EscapeCrystal.h"
-#include<time.h>
+
 Game::Game()
 {   //背景を生成
 	sky = NewGO<SkyCube>(0, "skycube");
@@ -35,6 +35,14 @@ Game::Game()
 	//ここでgoalUIをnullptrにしておく。これで、ゲーム開始時にはゴールUIは存在しない状態になる。
 	goalUI = nullptr;
 	goalUIElapsedTime = 0.0f;
+	float crystal4X = GetRandomValue(-1250.0f, 450.0f);
+	float crystal4Z = GetRandomValue(-1150.0f, -800.0f);
+	float crystal5X = GetRandomValue(-1450.0f, -600.0f);
+	float crystal5Z = GetRandomValue(-700.0f, 300.0f);
+	float crystal6X = GetRandomValue(350.0f, 1000.0f);
+	float crystal6Z = GetRandomValue(-500.0f, 300.0f);
+	float crystal8Z = GetRandomValue(-1500.0f, 2000.0f);
+	float crystal10X = GetRandomValue(-120.0f, 1000.0f);
 	//Starクラスのオブジェクトを作る
 	Crystal* crystal1 = NewGO<Crystal>(0, "crystal");
 	crystal1->position = { 1130.0f,1553.2f,-1120.5f };
@@ -49,15 +57,15 @@ Game::Game()
 	crystal3->firstPosition = crystal3->position;
 
 	Crystal* crystal4 = NewGO<Crystal>(0, "crystal");
-	crystal4->position = { 0.0f,-300.0f,1200.0f };
+	crystal4->position = { crystal4X,-300.0f,crystal4Z };
 	crystal4->firstPosition = crystal4->position;
 
 	Crystal* crystal5 = NewGO<Crystal>(0, "crystal");
-	crystal5->position = { -1049.8f,-30.03f, -239.45f };
+	crystal5->position = { crystal5X,-30.03f,crystal5Z };
 	crystal5->firstPosition = crystal5->position;
 
 	Crystal* crystal6 = NewGO<Crystal>(0, "crystal");
-	crystal6->position = { 700.0f,10.40f, -250.0f };
+	crystal6->position = { crystal6X,10.40f, crystal6Z };
 	crystal6->firstPosition = crystal6->position;
 
 	Crystal* crystal7 = NewGO<Crystal>(0, "crystal");
@@ -65,7 +73,7 @@ Game::Game()
 	crystal7->firstPosition = crystal7->position;
 
 	Crystal* crystal8 = NewGO<Crystal>(0, "crystal");
-	crystal8->position = { -1685.0f,10.0f, -1500.0f };
+	crystal8->position = { -1685.0f,10.0f, crystal8Z };
 	crystal8->firstPosition = crystal8->position;
 
 	Crystal* crystal9 = NewGO<Crystal>(0, "crystal");
