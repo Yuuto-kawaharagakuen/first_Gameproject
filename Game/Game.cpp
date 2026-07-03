@@ -63,7 +63,7 @@ Game::Game()
 	Crystal* crystal5 = NewGO<Crystal>(0, "crystal");
 	crystal5->position = { crystal5X,-30.03f,crystal5Z };
 	crystal5->firstPosition = crystal5->position;
-
+	
 	Crystal* crystal6 = NewGO<Crystal>(0, "crystal");
 	crystal6->position = { crystal6X,10.40f, crystal6Z };
 	crystal6->firstPosition = crystal6->position;
@@ -140,7 +140,6 @@ Game::~Game()
 //更新処理
 void Game::Update()
 {
-
 	if (player->crystalCount >= 5) {
 		//goalUIがnullptr(中身が空)のときにゴールを生成
 		if (!goalUI) {

@@ -88,7 +88,17 @@ void Player::Move()
 	//移動速度にスティックの入力量を加算する
 	moveSpeed += right + forward;
 
-	moveSpeed.y -= 10.0f;
+	// 重力処理：上昇時と下降時で重力を変えて落下を速くし、ジャンプのメリハリを出す
+	if (characterController.IsOnGround() == false) {
+		if (moveSpeed.y > 0.0f) {
+			// 上昇中は控えめに減速
+			moveSpeed.y -= 20.0f;
+		} 
+		else {
+			// 下降中は強めに加速して落下を速くする
+			moveSpeed.y -= 50.0f;
+		}
+	}
 	// Bボタンを押すたびにダッシュ/ウォークを切り替える
 	if (g_pad[0]->IsTrigger(enButtonB)) {
 		isDashing = !isDashing;
@@ -108,7 +118,7 @@ void Player::Move()
 		if(g_pad[0]->IsTrigger(enButtonA))
 		{
 		//ジャンプさせる
-			moveSpeed.y = 580.0f;	
+			moveSpeed.y = 700.0f;	
 		}
 	}
 	else if (characterController.IsOnGround() == false) {
@@ -116,7 +126,7 @@ void Player::Move()
 		if (g_pad[0]->IsTrigger(enButtonA) and jumpState == 0)
 		{
 			modelRender.PlayAnimation(enAnimationClip_Idle);
-			moveSpeed.y = 580.0f;
+			moveSpeed.y = 700.0f;
 			jumpState = 1;
 		}
 	}

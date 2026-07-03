@@ -25,6 +25,7 @@ public:
 	BackGround* backGround;
 	SoundSource* gameBGM;
 	Crystal* crystal;
+	Crystal* crystal4;
 	CountUI* countUI;
 	Goal* goal;
 	GoalUI* goalUI;
