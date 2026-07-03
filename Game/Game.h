@@ -20,10 +20,12 @@ public:
 	~Game();
 	//更新処理
 	void Update();
+	void Render(RenderContext& rc);
 	Player* player;
 	GameCamera* gameCamera;
 	BackGround* backGround;
 	SoundSource* gameBGM;
+	SpriteRender spriteRender;
 	Crystal* crystal;
 	Crystal* crystal4;
 	CountUI* countUI;

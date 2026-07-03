@@ -104,6 +104,8 @@ Game::Game()
 	// カウントダウン用オブジェクトを作る（この中でカウントが終わると g_IsGameActive = true になる）
 	NewGO<Countdown>(0, "countdown");
 
+	spriteRender.Init("Assets/sprite/crystal.dds", 150.0f, 100.0f);
+	spriteRender.SetPosition({ -900.0f, 450.0f, 0.0f });
 
 }
 
@@ -140,6 +142,7 @@ Game::~Game()
 //更新処理
 void Game::Update()
 {
+	spriteRender.Update();
 	if (player->crystalCount >= 5) {
 		//goalUIがnullptr(中身が空)のときにゴールを生成
 		if (!goalUI) {
@@ -171,4 +174,9 @@ void Game::Update()
 	/*if (g_pad[0]->IsTrigger(enButtonRB1)) {
 		exit(0);
 	}*/
+}
+
+void Game::Render(RenderContext& rc)
+{
+	spriteRender.Draw(rc);
 }
