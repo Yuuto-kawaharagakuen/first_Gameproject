@@ -30,6 +30,7 @@
     <ClCompile Include="RankingManager.cpp" />
     <ClCompile Include="RankingScene.cpp" />
     <ClCompile Include="Controller.cpp" />
+    <ClCompile Include="PopupText.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -55,5 +56,6 @@
     <ClInclude Include="RankingManager.h" />
     <ClInclude Include="RankingScene.h" />
     <ClInclude Include="Controller.h" />
+    <ClInclude Include="PopupText.h" />
   </ItemGroup>
 </Project>

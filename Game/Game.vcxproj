@@ -234,6 +234,7 @@
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="MoveCrystal1.cpp" />
+    <ClCompile Include="PopupText.cpp" />
     <ClCompile Include="RankingManager.cpp" />
     <ClCompile Include="RankingScene.cpp" />
     <ClCompile Include="Result1.cpp" />
@@ -262,6 +263,7 @@
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="MoveCrystal1.h" />
+    <ClInclude Include="PopupText.h" />
     <ClInclude Include="RankingManager.h" />
     <ClInclude Include="RankingScene.h" />
     <ClInclude Include="Result1.h" />

@@ -6,6 +6,7 @@
 #include"sound/SoundSource.h"
 #include"CountUI.h"
 #include<time.h>
+#include"PopupText.h"
 MoveCrystal1::MoveCrystal1() {
 	//☆のモデルを読み込む。
 	modelRender.Init("Assets/modelData/blueObject.tkm");
@@ -82,6 +83,9 @@ void MoveCrystal1::Update()
 		CountUI* countUI = FindGO<CountUI>("countUI");
 		countUI->UInum += 1;
 		player->crystalCount += 1;
+
+		PopupText* popup = NewGO<PopupText>(0);
+		popup->Init(L"+1");
 		//自身を削除する。
 		DeleteGO(this);
 	}

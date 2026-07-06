@@ -11,7 +11,7 @@ GoalUI::~GoalUI()
 }
 void GoalUI::Update() {
 	if (position.y < 360.0f) {
-		position.y += 0.25f;
+		position.y += 0.50f;
 		// 目標位置に到達したらタイマー開始
 		if (position.y >= 360.0f && displayTimer < 0.0f) {
 			displayTimer = 5.0f; // 5秒間表示

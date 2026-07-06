@@ -5,6 +5,7 @@
 #include "sound/SoundEngine.h"
 #include"sound/SoundSource.h"
 #include"CountUI.h"
+#include"PopupText.h"
 EscapeCrystal::EscapeCrystal() {
 	//☆のモデルを読み込む。
 	modelRender.Init("Assets/modelData/blueObject.tkm");
@@ -83,6 +84,9 @@ void EscapeCrystal::Update()
 		CountUI* countUI = FindGO<CountUI>("countUI");
 		countUI->UInum += 1;
 		player->crystalCount += 1;
+
+		PopupText* popup = NewGO<PopupText>(0);
+		popup->Init(L"+1");
 		//自身を削除する。
 		DeleteGO(this);
 	}
