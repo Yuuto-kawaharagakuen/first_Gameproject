@@ -42,7 +42,7 @@ void EscapeCrystal::Update()
 	if (cooldownTimer <= 0.0f && g_pad[0]->IsTrigger(enButtonY))
 	{
 		isStopped = true;
-		stopTimer = 3.0f; // 3秒
+		stopTimer = 5.0f; // 5秒
 		cooldownTimer = 30.0f; // 30秒後に再び使える
 	}
 

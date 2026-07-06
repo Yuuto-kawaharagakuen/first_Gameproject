@@ -104,41 +104,41 @@ namespace nsK2EngineLow {
 				return 0.0f;
 			}
 		};
-	//	//衝突したときに呼ばれる関数オブジェクト(天井用)
-	//	struct SweepResultCeiling : public btCollisionWorld::ConvexResultCallback
-	//	{
-	//		bool isHit = false;
-	//		Vector3 hitPos = Vector3(0.0f, FLT_MAX, 0.0f);
-	//		Vector3 startPos;
-	//		Vector3 hitNormal;
-	//		btCollisionObject* me = nullptr;
-	//		float dist = FLT_MAX;
+		//衝突したときに呼ばれる関数オブジェクト(天井用)
+		//struct SweepResultCeiling : public btCollisionWorld::ConvexResultCallback
+		//{
+		//	bool isHit = false;
+		//	Vector3 hitPos = Vector3(0.0f, FLT_MAX, 0.0f);
+		//	Vector3 startPos;
+		//	Vector3 hitNormal;
+		//	btCollisionObject* me = nullptr;
+		//	float dist = FLT_MAX;
 
-	//		virtual btScalar addSingleResult(btCollisionWorld::LocalConvexResult& convexResult, bool normalInWorldSpace)
-	//		{
-	//			if (convexResult.m_hitCollisionObject == me
-	//				|| convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Character
-	//				|| convexResult.m_hitCollisionObject->getInternalType() == btCollisionObject::CO_GHOST_OBJECT
-	//				) {
-	//				return 0.0f;
-	//			}
-	//			Vector3 hitNormalTmp = *(Vector3*)&convexResult.m_hitNormalLocal;
-	//			//法線が下向き（Y成分がマイナス）なら天井とみなす。
-	//			if (hitNormalTmp.y < -0.3f) {
-	//				isHit = true;
-	//				Vector3 hitPosTmp = *(Vector3*)&convexResult.m_hitPointLocal;
-	//				Vector3 vDist;
-	//				vDist.Subtract(hitPosTmp, startPos);
-	//				float distTmp = vDist.Length();
-	//				if (dist > distTmp) {
-	//					hitPos = hitPosTmp;
-	//					hitNormal = hitNormalTmp;
-	//					dist = distTmp;
-	//				}
-	//			}
-	//			return 0.0f;
-	//		}
-	//	};
+		//	virtual btScalar addSingleResult(btCollisionWorld::LocalConvexResult& convexResult, bool normalInWorldSpace)
+		//	{
+		//		if (convexResult.m_hitCollisionObject == me
+		//			|| convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Character
+		//			|| convexResult.m_hitCollisionObject->getInternalType() == btCollisionObject::CO_GHOST_OBJECT
+		//			) {
+		//			return 0.0f;
+		//		}
+		//		Vector3 hitNormalTmp = *(Vector3*)&convexResult.m_hitNormalLocal;
+		//		//法線が下向き（Y成分がマイナス）なら天井とみなす。
+		//		if (hitNormalTmp.y < -0.3f) {
+		//			isHit = true;
+		//			Vector3 hitPosTmp = *(Vector3*)&convexResult.m_hitPointLocal;
+		//			Vector3 vDist;
+		//			vDist.Subtract(hitPosTmp, startPos);
+		//			float distTmp = vDist.Length();
+		//			if (dist > distTmp) {
+		//				hitPos = hitPosTmp;
+		//				hitNormal = hitNormalTmp;
+		//				dist = distTmp;
+		//			}
+		//		}
+		//		return 0.0f;
+		//	}
+		//};
 	}
 
 

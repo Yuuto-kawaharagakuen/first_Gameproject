@@ -42,7 +42,7 @@ void MoveCrystal1::Update()
 	if (cooldownTimer <= 0.0f && g_pad[0]->IsTrigger(enButtonY))
 	{
 		isStopped = true;
-		stopTimer = 3.0f; // 3秒
+		stopTimer = 5.0f; // 5秒
 		cooldownTimer = 30.0f;
 	}
 
@@ -90,10 +90,10 @@ void MoveCrystal1::Update()
 void MoveCrystal1::Move()
 {
 	srand(time(nullptr));
-	position.x += rand() % 30;
-	position.x -= rand() % 30;
-	position.z += rand() % 30;
-	position.z -= rand() % 30;
+	position.x += rand() % 15;
+	position.x -= rand() % 15;
+	position.z += rand() % 15;
+	position.z -= rand() % 15;
 	if (position.x >= 1065) {
 		position.x = rand() % 2000 - 1000;
 	}

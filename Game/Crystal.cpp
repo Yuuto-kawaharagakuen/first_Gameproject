@@ -10,6 +10,20 @@ Crystal::Crystal() {
 	//☆のモデルを読み込む。
 	modelRender.Init("Assets/modelData/blueObject.tkm");
 
+	wchar_t text[64];
+	if (cooldownTimer > 0.0f)
+	{
+		int remain = (int)(cooldownTimer + 0.999f); // 切り上げ表示
+		swprintf_s(text, L"フリーズ: あと%d秒", remain);
+	}
+	else
+	{
+		swprintf_s(text, L"フリーズ:使用可能!");
+	}
+	StopfontRender.SetPosition({ -950.0f,500.0f,0.0f });
+	StopfontRender.SetColor(g_vec4Black);
+	StopfontRender.SetText(text);
+
 	player = FindGO<Player>("player");
 
 	//☆を削除するときの音を読み込む
@@ -27,7 +41,8 @@ Crystal::~Crystal()
 }
 
 void Crystal::Update()
-{
+{    
+	wchar_t text[64];
 	// ゲームがアクティブでない間は動作しない
 	if (g_IsGameActive == false)
 	{
@@ -43,7 +58,7 @@ void Crystal::Update()
 	if (cooldownTimer <= 0.0f && g_pad[0]->IsTrigger(enButtonY))
 	{
 		isStopped = true;
-		stopTimer = 3.0f;      // 3秒停止
+		stopTimer = 5.0f;      // 5秒停止
 		cooldownTimer = 30.0f; // 30秒後に再び使える
 	}
 
@@ -66,8 +81,17 @@ void Crystal::Update()
 
 	if (cooldownTimer > 0.0f)
 	{
+		int remain = (int)(cooldownTimer + 0.999f); // 切り上げ表示
+		swprintf_s(text, L"フリーズ: あと%d秒", remain);
 		cooldownTimer -= 1.0f / 60.0f;
 	}
+	else
+	{
+		swprintf_s(text, L"フリーズ:使用可能!");
+	}
+	StopfontRender.SetPosition({ -950.0f,500.0f,0.0f });
+	StopfontRender.SetColor(g_vec4Black);
+	StopfontRender.SetText(text);
 	//絵描きさんの更新処理。
 	modelRender.Update();
 
@@ -146,5 +170,5 @@ void Crystal::Rotation()
 void Crystal::Render(RenderContext& rc)
 {
 	modelRender.Draw(rc);
-	fontRender.Draw(rc);
+	StopfontRender.Draw(rc);
 }

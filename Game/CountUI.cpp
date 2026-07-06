@@ -7,7 +7,7 @@
 CountUI::CountUI()
 {
 	fontRender.SetColor(g_vec4Black);
-	position = { -860.0f, 470.0f, 0.0f };
+	position = { -860.0f, 420.0f, 0.0f };
 }
 
 CountUI::~CountUI()
@@ -25,7 +25,7 @@ void CountUI::Update()
 	}
 
 	wchar_t text[50];
-	swprintf_s(text, 50, L"X%d", UInum);
+	swprintf_s(text, 50, L"x%d", UInum);
 	fontRender.SetText(text);
 	fontRender.SetPosition(position);
 	player = FindGO<Player>("player");

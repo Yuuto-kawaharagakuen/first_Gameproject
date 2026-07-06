@@ -105,7 +105,7 @@ Game::Game()
 	NewGO<Countdown>(0, "countdown");
 
 	spriteRender.Init("Assets/sprite/crystal.dds", 150.0f, 100.0f);
-	spriteRender.SetPosition({ -900.0f, 450.0f, 0.0f });
+	spriteRender.SetPosition({ -900.0f, 410.0f, 0.0f });
 
 }
 
