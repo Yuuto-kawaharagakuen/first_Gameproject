@@ -20,7 +20,7 @@ Game::Game()
 {   //背景を生成
 	sky = NewGO<SkyCube>(0, "skycube");
 	sky->SetType(enSkyCubeType_DayToon);
-	g_renderingEngine->SetAmbientByIBLTexture(sky->GetTextureFilePath(), 0.3f);
+	g_renderingEngine->SetAmbientByIBLTexture(sky->GetTextureFilePath(), 0.75f);
 
 	//プレイヤーのオブジェクトを作る
 	player = NewGO<Player>(0, "player");

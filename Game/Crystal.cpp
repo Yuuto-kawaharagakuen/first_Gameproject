@@ -29,7 +29,7 @@ Crystal::Crystal() {
 
 	//☆を削除するときの音を読み込む
 	g_soundEngine->ResistWaveFileBank(2,"Assets/sound/get.wav");
-
+	g_soundEngine->ResistWaveFileBank(5,"Assets/sound/Stop.wav");
 	// 初期化
 	isStopped = false;
 	stopTimer = 0.0f;
@@ -58,6 +58,10 @@ void Crystal::Update()
 	// Xボタンで一度だけ3秒間停止させる処理
 	if (cooldownTimer <= 0.0f && g_pad[0]->IsTrigger(enButtonY))
 	{
+		SoundSource* Stop = NewGO<SoundSource>(0);
+		Stop->Init(5);
+		Stop->SetVolume(1.5f);
+		Stop->Play(false);
 		isStopped = true;
 		stopTimer = 5.0f;      // 5秒停止
 		cooldownTimer = 30.0f; // 30秒後に再び使える
