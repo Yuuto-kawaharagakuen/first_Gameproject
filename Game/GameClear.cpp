@@ -31,11 +31,11 @@ void GameClear::Update() {
 		DeleteGO(this);
 	}
 
-	// Bボタンでタイトルへ戻る
-	if (g_pad[0]->IsTrigger(enButtonRB1)) {
-		NewGO<Title>(0, "title");
-		DeleteGO(this);
-	}
+	//// Bボタンでタイトルへ戻る
+	//if (g_pad[0]->IsTrigger(enButtonRB1)) {
+	//	NewGO<Title>(0, "title");
+	//	DeleteGO(this);
+	//}
 	//7が押されたらゲームを終了する
 	/*if (g_pad[0]->IsTrigger(enButtonRB1)) {
 		exit(0);

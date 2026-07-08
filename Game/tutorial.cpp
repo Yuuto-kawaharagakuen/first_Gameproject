@@ -25,11 +25,11 @@ void Tutorial::Update()
 		NewGO<Game>(0);
 		DeleteGO(this);
 	}
-	//Bキーを押されたらスタート画面に戻る
-	if (g_pad[0]->IsTrigger(enButtonRB1)) {
-		NewGO<Title>(0, "title");
-		DeleteGO(this);
-	}
+	////Bキーを押されたらスタート画面に戻る
+	//if (g_pad[0]->IsTrigger(enButtonRB1)) {
+	//	NewGO<Title>(0, "title");
+	//	DeleteGO(this);
+	//}
 	//7が押されたらゲームを終了する
 	/*if (g_pad[0]->IsTrigger(enButtonRB1)) {	
 		exit(0);

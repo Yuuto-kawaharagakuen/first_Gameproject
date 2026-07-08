@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include"sound/SoundSource.h"
 #include <random>
 
@@ -21,6 +21,28 @@ public:
 	//更新処理
 	void Update();
 	void Render(RenderContext& rc);
+	void UpdatePauseMenu();
+	void DrawPauseMenu(RenderContext& rc);
+	void EnterPause();
+	void ExitPause(bool backToTitle);
+
+	bool m_isPaused = false;
+	int m_pauseCursor = 0;   //0=続ける 1=タイトルへ
+	bool m_gameActiveBeforePause = true;
+
+	SpriteRender m_pauseOverlaySprite; //画面全体を暗くする半透明パネル
+	SpriteRender m_pausePanelSprite; //中央のパネル
+
+	FontRender m_pauseTitleText; //ポーズ
+	FontRender m_pauseCursorText; //「▶」
+	FontRender m_pauseOption1Text; //つづける
+	FontRender m_pauseOption2Text; //タイトルへ
+	 
+	//つづける、タイトルへ それぞれのカーソル位置
+	float m_pauseCursorX = -150.0f;
+	float m_pauseCursorPosOption1Y = 30.0f;
+	float m_pauseCursorPosOption2Y = -30.0f;
+
 	Player* player;
 	GameCamera* gameCamera;
 	BackGround* backGround;

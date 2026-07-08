@@ -74,10 +74,10 @@ void RankingScene::Update() {
 		DeleteGO(this);
 	}
 	
-	if (g_pad[0]->IsTrigger(enButtonRB1)) {
+	/*if (g_pad[0]->IsTrigger(enButtonRB1)) {
 		NewGO<Title>(0, "title");
 		DeleteGO(this);
-	}
+	}*/
 }
 
 void RankingScene::Render(RenderContext& rc) {

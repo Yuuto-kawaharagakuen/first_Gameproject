@@ -107,6 +107,27 @@ Game::Game()
 	spriteRender.Init("Assets/sprite/crystal.dds", 150.0f, 100.0f);
 	spriteRender.SetPosition({ -900.0f, 410.0f, 0.0f });
 
+	//画面全体を暗くする半透明画像（黒一色のdds）
+	m_pauseOverlaySprite.Init("Assets/sprite/halfblack.dds", 5760.0f,3024.0f);
+	m_pauseOverlaySprite.SetPosition({ 0.0f,0.0f,0.0f });
+
+	//中央パネル
+	m_pausePanelSprite.Init("Assets/sprite/black.dds",1920.0f/2,1080.0f/2);
+	m_pausePanelSprite.SetPosition({ 0.0f, 0.0f, 0.0f });
+
+
+	m_pauseTitleText.SetText(L"ポーズ");
+	m_pauseTitleText.SetPosition({ -80.0f,100.0f,0.0f});
+	
+	m_pauseOption1Text.SetText(L"つづける");
+	m_pauseOption1Text.SetPosition({ -100.0f,30.0f,0.0f});
+	
+	m_pauseOption2Text.SetText(L"タイトルへ");
+	m_pauseOption2Text.SetPosition({ -100.0f,-30.0f,0.0f});
+
+	m_pauseCursorText.SetText(L"＞");
+	m_pauseCursorText.SetPosition(m_pauseCursorX,m_pauseCursorPosOption1Y,0.0f); // 初期は「つづける」を指す
+
 }
 
 Game::~Game()
@@ -143,6 +164,18 @@ Game::~Game()
 void Game::Update()
 {
 	spriteRender.Update();
+
+	//Bキーを押されたらスタート画面に戻る
+	if (g_pad[0]->IsTrigger(enButtonRB1)) {
+		if (!m_isPaused) EnterPause();
+		else ExitPause(false);
+	}
+
+	if (m_isPaused) {
+		UpdatePauseMenu();
+		return;
+	}
+
 	if (player->crystalCount >= 5) {
 		//goalUIがnullptr(中身が空)のときにゴールを生成
 		if (!goalUI) {
@@ -165,18 +198,68 @@ void Game::Update()
 		DeleteGO(goalUI);
 		DeleteGO(this);
 	}
-	//Bキーを押されたらスタート画面に戻る
-	if (g_pad[0]->IsTrigger(enButtonRB1)) {
-		NewGO<Title>(0,"title");
-		DeleteGO(this);
-	}
+	
 	//7が押されたらゲームを終了する
 	/*if (g_pad[0]->IsTrigger(enButtonRB1)) {
 		exit(0);
 	}*/
 }
 
+void Game::EnterPause() {
+	m_isPaused = true;
+	m_gameActiveBeforePause = g_IsGameActive;
+	g_IsGameActive = false;
+	m_pauseCursor = 0;
+	m_pauseCursorText.SetPosition(m_pauseCursorX,m_pauseCursorPosOption1Y,0.0f);
+}
+
+void Game::ExitPause(bool backToTitle) {
+	if (backToTitle) {
+		if (gameBGM) {
+			gameBGM->Stop();
+			gameBGM->Release();
+			gameBGM = nullptr;
+		}
+		NewGO<Title>(0, "title");
+		DeleteGO(this);
+		return;
+	}
+
+	m_isPaused = false;
+	g_IsGameActive = m_gameActiveBeforePause;
+
+}
+
+void Game::UpdatePauseMenu() {
+	if (g_pad[0]->IsTrigger(enButtonUp) or g_pad[0]->IsTrigger(enButtonDown)) {
+
+		m_pauseCursor = (m_pauseCursor == 0) ? 1 : 0;
+		m_pauseCursorText.SetPosition(m_pauseCursorX,(m_pauseCursor == 0) ? m_pauseCursorPosOption1Y : m_pauseCursorPosOption2Y,0.0f);
+
+	}
+
+	if (g_pad[0]->IsTrigger(enButtonA))
+	{
+		ExitPause(m_pauseCursor == 1);
+	}
+}
+
 void Game::Render(RenderContext& rc)
 {
 	spriteRender.Draw(rc);
+
+	if (m_isPaused) {
+		DrawPauseMenu(rc);
+	}
+}
+
+void Game::DrawPauseMenu(RenderContext& rc) {
+
+	m_pauseOverlaySprite.Draw(rc);
+	m_pausePanelSprite.Draw(rc);
+	m_pauseTitleText.Draw(rc);
+	m_pauseCursorText.Draw(rc);
+	m_pauseOption1Text.Draw(rc);
+	m_pauseOption2Text.Draw(rc);
+
 }
