@@ -167,7 +167,12 @@ void Game::Update()
 
 	//Bキーを押されたらスタート画面に戻る
 	if (g_pad[0]->IsTrigger(enButtonRB1)) {
-		if (!m_isPaused) EnterPause();
+		if (!m_isPaused) {
+			// カウントダウン中(g_IsGameActive == false)は開けないようにする
+			if (g_IsGameActive) {
+				EnterPause();
+			}
+		}
 		else ExitPause(false);
 	}
 
