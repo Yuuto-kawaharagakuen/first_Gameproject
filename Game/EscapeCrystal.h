@@ -2,7 +2,7 @@
 
 class Player;
 
-class EscapeCrystal:public IGameObject
+class EscapeCrystal :public IGameObject
 {
 public:
 	EscapeCrystal();
@@ -23,12 +23,4 @@ public:
 	Vector3 firstPosition;
 	Quaternion rotation;	//クォータニオン。
 	Player* player;		//プレイヤー。
-	FontRender fontRender; //フォントレンダーを使用
-
-	// Xキーで一度だけ5秒間動きを止めるためのフラグ/タイマー
-	bool isStopped;
-	float cooldownTimer;
-	float stopTimer;
-	bool prevXDown;
 };
-

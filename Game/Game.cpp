@@ -172,7 +172,7 @@ Game::~Game()
 	DeleteGO(countUI);
 	//ゴールUIを削除する;
 	DeleteGO(goalUI);
-
+	DeleteGO(goal);
 }
 
 //更新処理

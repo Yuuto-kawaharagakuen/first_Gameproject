@@ -2,7 +2,7 @@
 
 class Player;
 
-class Crystal:public IGameObject
+class Crystal :public IGameObject
 {
 public:
 	Crystal();
@@ -11,8 +11,6 @@ public:
 	void Update();
 	//描画処理
 	void Render(RenderContext& rc);
-	//移動処理
-	//void Move();
 	//回転処理
 	void Rotation();
 
@@ -23,12 +21,4 @@ public:
 	Vector3 firstPosition;
 	Quaternion rotation;	//クォータニオン。
 	Player* player;		//プレイヤー。
-	FontRender StopfontRender;
-
-	// Xキーで一度だけ5秒間動きを止めるためのフラグ/タイマー
-	bool isStopped;
-	float cooldownTimer;
-	float stopTimer;
-	bool prevXDown;
 };
-

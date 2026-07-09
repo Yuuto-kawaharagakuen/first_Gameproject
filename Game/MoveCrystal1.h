@@ -23,13 +23,4 @@ public:
 	Vector3 firstPosition;
 	Quaternion rotation;	//クォータニオン。
 	Player* player;		//プレイヤー。
-	FontRender fontRender; //フォントレンダーを使用
-
-	// Yボタンで一度だけ3秒間動きを止めるためのフラグ/タイマー
-	// 使用後は30秒のクールダウンが入る
-	bool isStopped;
-	float cooldownTimer;
-	float stopTimer; // 停止残り時間(秒)
-	bool prevXDown;
 };
-
