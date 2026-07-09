@@ -39,9 +39,9 @@ public:
 	FontRender m_pauseOption2Text; //タイトルへ
 	 
 	//つづける、タイトルへ それぞれのカーソル位置
-	float m_pauseCursorX = -150.0f;
-	float m_pauseCursorPosOption1Y = 30.0f;
-	float m_pauseCursorPosOption2Y = -30.0f;
+	float m_pauseCursorX = -250.0f;
+	float m_pauseCursorPosOption1Y = 50.0f;
+	float m_pauseCursorPosOption2Y = -50.0f;
 
 	Player* player;
 	GameCamera* gameCamera;

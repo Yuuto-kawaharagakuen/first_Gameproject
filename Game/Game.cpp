@@ -15,9 +15,12 @@
 #include "Countdown.h"
 #include"MoveCrystal1.h"
 #include"EscapeCrystal.h"
-
+#include<time.h>
 Game::Game()
-{   //背景を生成
+{   
+	srand(time(nullptr));
+	
+	//背景を生成
 	sky = NewGO<SkyCube>(0, "skycube");
 	sky->SetType(enSkyCubeType_DayToon);
 	g_renderingEngine->SetAmbientByIBLTexture(sky->GetTextureFilePath(), 0.75f);
@@ -43,13 +46,22 @@ Game::Game()
 	float crystal6Z = GetRandomValue(-500.0f, 300.0f);
 	float crystal8Z = GetRandomValue(-1500.0f, 2000.0f);
 	float crystal10X = GetRandomValue(-120.0f, 1000.0f);
+
+	Vector3 N2[2];
+	N2[0] = {1500.0f,0.0f,2000.0f};
+	N2[1] = { 144.3f,286.3f,-984.9f };
+
+	Vector3 N10[3];
+	N10[0] = { 500.0f,285.3f,900.0f };
+	N10[1] = { 100.0f,620.0f,-500.0f };
+	N10[2] = { 1000.0f,1220.0f,-1500.0f };
 	//Starクラスのオブジェクトを作る
 	Crystal* crystal1 = NewGO<Crystal>(0, "crystal");
 	crystal1->position = { 1130.0f,1553.2f,-1120.5f };
 	crystal1->firstPosition = crystal1->position;
 	
 	Crystal* crystal2 = NewGO<Crystal>(0, "crystal");
-	crystal2->position = { 144.3f,286.3f,-984.9f };
+	crystal2->position = N2[rand() % 2];
 	crystal2->firstPosition = crystal2->position;
 
 	Crystal* crystal3 = NewGO<Crystal>(0, "crystal");
@@ -81,7 +93,7 @@ Game::Game()
 	crystal9->firstPosition = crystal9->position;
 
 	Crystal* crystal10 = NewGO<Crystal>(0, "crystal");
-	crystal10->position = { 500.0f,285.3f,900.0f };
+	crystal10->position = N10[rand() % 3];
 	crystal10->firstPosition = crystal10->position;
 
 	MoveCrystal1* moveCrystal1 = NewGO<MoveCrystal1>(0, "crystal");
@@ -112,22 +124,25 @@ Game::Game()
 	m_pauseOverlaySprite.SetPosition({ 0.0f,0.0f,0.0f });
 
 	//中央パネル
-	m_pausePanelSprite.Init("Assets/sprite/black.dds",1920.0f/2,1080.0f/2);
+	m_pausePanelSprite.Init("Assets/sprite/black.dds",1536.0f,864.0f);
 	m_pausePanelSprite.SetPosition({ 0.0f, 0.0f, 0.0f });
 
 
 	m_pauseTitleText.SetText(L"ポーズ");
-	m_pauseTitleText.SetPosition({ -80.0f,100.0f,0.0f});
+	m_pauseTitleText.SetPosition({ -100.0f,170.0f,0.0f});
+	m_pauseTitleText.SetScale(1.3f);
 	
 	m_pauseOption1Text.SetText(L"つづける");
-	m_pauseOption1Text.SetPosition({ -100.0f,30.0f,0.0f});
-	
+	m_pauseOption1Text.SetPosition({ -160.0f,45.0f,0.0f});
+	m_pauseOption1Text.SetScale(1.5f);
+
 	m_pauseOption2Text.SetText(L"タイトルへ");
-	m_pauseOption2Text.SetPosition({ -100.0f,-30.0f,0.0f});
+	m_pauseOption2Text.SetPosition({ -180.0f,-60.0f,0.0f});
+	m_pauseOption2Text.SetScale(1.5f);
 
 	m_pauseCursorText.SetText(L"＞");
 	m_pauseCursorText.SetPosition(m_pauseCursorX,m_pauseCursorPosOption1Y,0.0f); // 初期は「つづける」を指す
-
+	m_pauseCursorText.SetScale(1.8f);
 }
 
 Game::~Game()
