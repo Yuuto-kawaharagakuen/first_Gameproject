@@ -196,7 +196,7 @@ void Game::Update()
 		return;
 	}
 
-	if (player->crystalCount >= 5) {
+	if (player->crystalCount >= 7) {
 		//goalUIがnullptr(中身が空)のときにゴールを生成
 		if (!goalUI) {
 			goal->position = { 570.0f, 967.1f, 600.0f };
