@@ -2,9 +2,6 @@
 #include"Game.h"
 #include "GameState.h"
 #include "Player.h"
-#include "sound/SoundEngine.h"
-#include "sound/SoundSource.h"
-
 Player::Player()
 {
 	position = { -1700.0f,-43.88f,450.0f };
@@ -19,15 +16,6 @@ Player::Player()
 	animationClips[enAnimationClip_Jump].SetLoopFlag(false);
 
 	fontRender.SetColor(g_vec4Black);
-
-	// フリーズスキルのクールダウン表示UI
-	freezeFontRender.SetPosition({ -950.0f, 500.0f, 0.0f });
-	freezeFontRender.SetColor(g_vec4Black);
-	freezeFontRender.SetText(L"フリーズ:使用可能!");
-
-	// フリーズ効果音を登録
-	g_soundEngine->ResistWaveFileBank(5, "Assets/sound/Stop.wav");
-
 	//ユニティちゃんのモデルを読み込む
 	modelRender.Init("Assets/modelData/unityChan.tkm", animationClips, enAnimationClip_Num, enModelUpAxisY);
 	// 初期の向き
@@ -38,13 +26,13 @@ Player::Player()
 	characterController.Init(25.0f, 75.0f, position);
 }
 
-Player::~Player()
+Player::~Player() 
 {
 
 }
 
 //更新処理
-void Player::Update()
+void Player::Update() 
 {
 	// ゲームがアクティブでない間は動作しない（カウントダウン中）
 	if (g_IsGameActive == false)
@@ -68,14 +56,14 @@ void Player::Update()
 	//アニメーションの再生
 	PlayAnimation();
 
-	//フリーズスキルの更新
-	UpdateFreezeSkill();
-
+	/*wchar_t text[128];
+		swprintf_s(text, 128, L"X: %.2f Y: %.2f Z: %.2f", position.x, position.y, position.z);
+		fontRender.SetText(text);*/
 	//絵描きさんの更新処理
 	modelRender.Update();
 }
 
-void Player::Move()
+void Player::Move() 
 {
 	//xzの移動速度を0.0fにする
 	moveSpeed.x = 0.0f;
@@ -100,25 +88,11 @@ void Player::Move()
 	//移動速度にスティックの入力量を加算する
 	moveSpeed += right + forward;
 
-	// 重力処理：上昇時と下降時で重力を変えて落下を速くし、ジャンプのメリハリを出す
-	if (characterController.IsOnGround() == false) {
-		if (moveSpeed.y > 0.0f) {
-			// 上昇中は控えめに減速
-			moveSpeed.y -= 20.0f;
-		}
-		else {
-			// 下降中は強めに加速して落下を速くする
-			moveSpeed.y -= 50.0f;
-		}
-	}
-	// Bボタンを押すたびにダッシュ/ウォークを切り替える
-	if (g_pad[0]->IsTrigger(enButtonB)) {
-		isDashing = !isDashing;
-	}
-	// ダッシュ有効なら速度を2.5倍にする
-	if (isDashing) {
-		moveSpeed.x *= 2.5f;
-		moveSpeed.z *= 2.5f;
+	moveSpeed.y -= 10.0f;
+	//Aボタンが押されたら移動速度2.5倍
+	if (g_pad[0]->IsPress(enButtonA)) {
+		moveSpeed.x *= 2.5;
+		moveSpeed.z *= 2.5;
 	}
 	//地面についていたら
 	if (characterController.IsOnGround())
@@ -127,18 +101,18 @@ void Player::Move()
 		moveSpeed.y = 0.0f;
 		jumpState = 0;
 		//Bボタンが押されたら
-		if (g_pad[0]->IsTrigger(enButtonA))
+		if(g_pad[0]->IsTrigger(enButtonB))
 		{
-			//ジャンプさせる
-			moveSpeed.y = 700.0f;
+		//ジャンプさせる
+			moveSpeed.y = 580.0f;	
 		}
 	}
 	else if (characterController.IsOnGround() == false) {
 
-		if (g_pad[0]->IsTrigger(enButtonA) and jumpState == 0)
+		if (g_pad[0]->IsTrigger(enButtonB) and jumpState == 0)
 		{
 			modelRender.PlayAnimation(enAnimationClip_Idle);
-			moveSpeed.y = 700.0f;
+			moveSpeed.y = 580.0f;
 			jumpState = 1;
 		}
 	}
@@ -147,7 +121,7 @@ void Player::Move()
 
 	if (position.y <= -1000.0f)
 	{
-		position = { -1700.0f,-43.88f,450.0f };
+		position= { -1700.0f,-43.88f,450.0f };
 
 		characterController.SetPosition(position);
 	}
@@ -181,8 +155,8 @@ void Player::ManageState()
 		//ここでManageStateの処理を終わらせる
 		return;
 	}
-	// ダッシュがオンかつ、動いているとき
-	if (isDashing && (fabsf(moveSpeed.x) >= 0.001f or fabsf(moveSpeed.z) >= 0.001f)) {
+	//Bボタンを押しているときかつ、動いているとき
+	if (g_pad[0]->IsPress(enButtonA) and (fabsf(moveSpeed.x) >= 0.001f or fabsf(moveSpeed.z) >= 0.001f)) {
 		playerState = 3;
 	}
 
@@ -229,53 +203,10 @@ void Player::PlayAnimation()
 	}
 }
 
-void Player::UpdateFreezeSkill()
-{
-	wchar_t text[64];
-
-	// Yボタン、クールダウン明けていたら発動
-	if (cooldownTimer <= 0.0f && g_pad[0]->IsTrigger(enButtonY))
-	{
-		SoundSource* stopSound = NewGO<SoundSource>(0);
-		stopSound->Init(5);
-		stopSound->SetVolume(1.5f);
-		stopSound->Play(false);
-
-		isStopped = true;
-		stopTimer = 5.0f;      // 5秒停止
-		cooldownTimer = 30.0f; // 30秒後に再び使える
-	}
-
-	// 停止中はタイマーを減らす
-	if (isStopped)
-	{
-		stopTimer -= 1.0f / 60.0f;
-		if (stopTimer <= 0.0f)
-		{
-			isStopped = false;
-		}
-	}
-
-	// クールダウン表示の更新
-	if (cooldownTimer > 0.0f)
-	{
-		int remain = (int)(cooldownTimer + 0.999f); // 切り上げ表示
-		swprintf_s(text, L"フリーズ: あと%d秒", remain);
-		cooldownTimer -= 1.0f / 60.0f;
-	}
-	else
-	{
-		swprintf_s(text, L"フリーズ:使用可能!");
-	}
-
-	freezeFontRender.SetText(text);
-}
-
 //描画処理
 void Player::Render(RenderContext& rc)
 {
 	//ユニティちゃんを描画する
 	modelRender.Draw(rc);
 	fontRender.Draw(rc);
-	freezeFontRender.Draw(rc); // フリーズスキルのクールダウン表示
 }

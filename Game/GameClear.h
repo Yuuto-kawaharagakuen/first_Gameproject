@@ -13,7 +13,6 @@ public:
 	// メンバ変数
 	SoundSource* GameClearBGM;
 	SpriteRender spriteRender;
-	FontRender fontRender;
 	float elapsedTime = 0.0f;
 	int score = 0;
 

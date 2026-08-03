@@ -1,6 +1,6 @@
-﻿#pragma once
+#pragma once
 
-class Player :public IGameObject
+class Player:public IGameObject
 {
 public:
 	Player();
@@ -17,12 +17,9 @@ public:
 	void ManageState();
 	//アニメーションの再生
 	void PlayAnimation();
-	//フリーズスキル(Yボタン、30秒クールダウン)の更新
-	void UpdateFreezeSkill();
 
 	//メンバ変数
 	FontRender fontRender;
-	FontRender freezeFontRender; // フリーズスキルのクールダウン表示用
 	ModelRender modelRender; //モデルレンダー
 	Vector3 position;
 	enum EnAnimatitonClip {
@@ -31,7 +28,7 @@ public:
 		enAnimationClip_Jump,
 		enAnimationClip_Run,
 		enAnimationClip_Num,
-	};
+     };
 	AnimationClip animationClips[enAnimationClip_Num];
 	CharacterController characterController;
 	Vector3 moveSpeed;
@@ -43,11 +40,5 @@ public:
 	int runnningState = 0;
 	int jumpState;
 	bool resetState;
-	// ダッシュ(Bボタンで切り替え)
-	bool isDashing = false;
-
-	// クリスタルを一定時間止めるフリーズスキル
-	bool isStopped = false;
-	float stopTimer = 0.0f;
-	float cooldownTimer = 0.0f;
 };
+

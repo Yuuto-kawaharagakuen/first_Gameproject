@@ -225,7 +225,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BackGround.cpp" />
-    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Countdown.cpp" />
     <ClCompile Include="CountUI.cpp" />
     <ClCompile Include="Crystal.cpp" />
@@ -234,9 +233,6 @@
     <ClCompile Include="GameCamera.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="MoveCrystal1.cpp" />
-    <ClCompile Include="PopupText.cpp" />
-    <ClCompile Include="RankingManager.cpp" />
-    <ClCompile Include="RankingScene.cpp" />
     <ClCompile Include="Result1.cpp" />
     <ClCompile Include="Goal.cpp" />
     <ClCompile Include="GoalUI.cpp" />
@@ -254,7 +250,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BackGround.h" />
-    <ClInclude Include="Controller.h" />
     <ClInclude Include="Countdown.h" />
     <ClInclude Include="CountUI.h" />
     <ClInclude Include="Crystal.h" />
@@ -263,9 +258,6 @@
     <ClInclude Include="GameCamera.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="MoveCrystal1.h" />
-    <ClInclude Include="PopupText.h" />
-    <ClInclude Include="RankingManager.h" />
-    <ClInclude Include="RankingScene.h" />
     <ClInclude Include="Result1.h" />
     <ClInclude Include="Goal.h" />
     <ClInclude Include="GoalUI.h" />
