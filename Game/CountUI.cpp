@@ -7,7 +7,7 @@
 CountUI::CountUI()
 {
 	fontRender.SetColor(g_vec4Black);
-	position = { -930.0f, 450.0f, 0.0f };
+	position = { -860.0f, 420.0f, 0.0f };
 }
 
 CountUI::~CountUI()
@@ -25,7 +25,7 @@ void CountUI::Update()
 	}
 
 	wchar_t text[50];
-	swprintf_s(text, 50, L"手に入れたクリスタルの数:%d個", UInum);
+	swprintf_s(text, 50, L"x%d", UInum);
 	fontRender.SetText(text);
 	fontRender.SetPosition(position);
 	player = FindGO<Player>("player");

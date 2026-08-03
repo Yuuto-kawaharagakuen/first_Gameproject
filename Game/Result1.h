@@ -1,4 +1,5 @@
 #pragma once
+#include"RankingScene.h"
 //#include"sound/SoundEngine.h"
 //ゲームクリア
 class Result1:public IGameObject
@@ -13,6 +14,7 @@ public:
 	//メンバ変数
 	SpriteRender spriteRender;
 	FontRender fontRender;
+	FontRender NextRender;
 	SoundSource* ResultBGM;
 	// スコア表示用フォントと値
 	FontRender scoreRender;

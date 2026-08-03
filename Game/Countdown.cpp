@@ -43,12 +43,13 @@ void Countdown::Render(RenderContext& rc)
 	if (currentCount > 0)
 	{
 		swprintf_s(buf, L"%d", currentCount);
+		fontRender.SetPosition({ -80.0f, 450.0f, 0.0f });
 	}
 	else
 	{
 		swprintf_s(buf, L"Start!");
+		fontRender.SetPosition({ -280.0f, 450.0f, 0.0f });
 	}
 	fontRender.SetText(buf);
-	fontRender.SetPosition({ -140.0f, 400.0f, 0.0f });
 	fontRender.Draw(rc);
 }
