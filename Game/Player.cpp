@@ -18,11 +18,11 @@ Player::Player()
 	animationClips[enAnimationClip_Jump].Load("Assets/animData/jump.tka");
 	animationClips[enAnimationClip_Jump].SetLoopFlag(false);
 
-	fontRender.SetColor(g_vec4Black);
+	fontRender.SetColor(g_vec4Cyan);
 
 	// フリーズスキルのクールダウン表示UI
 	freezeFontRender.SetPosition({ -950.0f, 500.0f, 0.0f });
-	freezeFontRender.SetColor(g_vec4Black);
+	freezeFontRender.SetColor(g_vec4Cyan);
 	freezeFontRender.SetText(L"フリーズ:使用可能!");
 
 	// フリーズ効果音を登録

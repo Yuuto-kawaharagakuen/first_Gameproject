@@ -6,7 +6,7 @@
 #include"Result1.h"
 CountUI::CountUI()
 {
-	fontRender.SetColor(g_vec4Black);
+	fontRender.SetColor(g_vec4Cyan);
 	position = { -860.0f, 420.0f, 0.0f };
 }
 

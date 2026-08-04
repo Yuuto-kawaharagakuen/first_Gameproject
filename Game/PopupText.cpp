@@ -10,7 +10,7 @@ void PopupText::Init(const wchar_t* text)
 
 	pos = Vector3(-50.0f,200.0f, 0.0f); 
 	fontRender.SetPosition(pos);
-	fontRender.SetColor(g_vec4Black);
+	fontRender.SetColor(g_vec4Cyan);
 	lifeTimer = LifeTime;
 }
 
@@ -25,7 +25,7 @@ void PopupText::Update() {
 	fontRender.SetPosition(pos);
 
 	float alpha = lifeTimer / LifeTime;
-	fontRender.SetColor(g_vec4Black);
+	fontRender.SetColor(g_vec4Cyan);
 }
 
 void PopupText::Render(RenderContext& rc) {
