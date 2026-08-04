@@ -34,6 +34,10 @@ void CountUI::Update()
 	if (totalSeconds < 1) totalSeconds = 1; // ゼロ除算回避
 	
 	Score = player->crystalCount * 1000 + 10000-totalSeconds*30;
+
+	if (Score <= 0) {
+		Score = 0;
+	}
 }
 
 void CountUI::Render(RenderContext& rc)
