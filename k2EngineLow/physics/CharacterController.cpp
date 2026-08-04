@@ -82,8 +82,8 @@ namespace nsK2EngineLow {
 
 				//上方向と衝突点の法線のなす角度を求める。
 				float angle = fabsf(acosf(hitNormalTmp.y));
-				if (angle >= Math::PI * 0.3f		//地面の傾斜が54度以上なので壁とみなす。
-					|| convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Character	//もしくはコリジョン属性がキャラクタなので壁とみなす。
+				if ((angle >= Math::PI * 0.3f && angle <= Math::PI * 0.7f)	//54度~126度の範囲だけを壁とみなす(天井・床は除外)
+					|| convexResult.m_hitCollisionObject->getUserIndex() == enCollisionAttr_Character
 					) {
 					isHit = true;
 					Vector3 hitPosTmp;
@@ -124,7 +124,7 @@ namespace nsK2EngineLow {
 				}
 				Vector3 hitNormalTmp = *(Vector3*)&convexResult.m_hitNormalLocal;
 				//法線が下向き（Y成分がマイナス）なら天井とみなす。
-				if (hitNormalTmp.y < -0.3f) {
+				if (hitNormalTmp.y < -0.8f) {
 					isHit = true;
 					Vector3 hitPosTmp = *(Vector3*)&convexResult.m_hitPointLocal;
 					Vector3 vDist;
@@ -185,7 +185,7 @@ namespace nsK2EngineLow {
 			start.setIdentity();
 			end.setIdentity();
 			start.setOrigin(btVector3(m_position.x, m_position.y + topOffset, m_position.z));
-			end.setOrigin(btVector3(nextPosition.x, nextPosition.y + topOffset, nextPosition.z));
+			end.setOrigin(btVector3(m_position.x, nextPosition.y + topOffset, m_position.z));	//x, zはm_positionのまま
 
 			SweepResultCeiling callback;
 			callback.me = m_rigidBody.GetBody();
@@ -241,23 +241,20 @@ namespace nsK2EngineLow {
 					//当たった。
 					//壁。
 					Vector3 vT0, vT1;
-					//XZ平面上での移動後の座標をvT0に、交点の座標をvT1に設定する。
 					vT0.Set(nextPosition.x, 0.0f, nextPosition.z);
 					vT1.Set(callback.hitPos.x, 0.0f, callback.hitPos.z);
-					//めり込みが発生している移動ベクトルを求める。
 					Vector3 vMerikomi;
 					vMerikomi.Subtract(vT0, vT1);
-					//XZ平面での衝突した壁の法線を求める。。
 					Vector3 hitNormalXZ = callback.hitNormal;
 					hitNormalXZ.y = 0.0f;
 					hitNormalXZ.Normalize();
-					//めり込みベクトルを壁の法線に射影する。
 					float fT0 = hitNormalXZ.Dot(vMerikomi);
 					//押し戻し返すベクトルを求める。
 					//押し返すベクトルは壁の法線に射影されためり込みベクトル+半径。
 					Vector3 vOffset;
 					vOffset = hitNormalXZ;
-					vOffset.Scale(-fT0 + m_radius);
+					const float wallSkin = 2.0f;	//壁とキャラの間に残す余裕分
+					vOffset.Scale(-fT0 + m_radius + wallSkin);	//ここに wallSkin を追加
 					nextPosition.Add(vOffset);
 
 					Vector3 currentDir;

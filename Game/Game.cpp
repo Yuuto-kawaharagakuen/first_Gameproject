@@ -30,7 +30,7 @@ Game::Game()
 	//ゲームカメラのオブジェクトを作る
 	gameCamera = NewGO<GameCamera>(0, "gamecamera");
 
-	//背景のオブジェクトを作る
+	//マップを生成
 	backGround = NewGO<BackGround>(0);
 
 	//UIを生成
