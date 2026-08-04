@@ -29,6 +29,14 @@ bool GameCamera::Start()
 	g_camera3D->SetNear(0.1f);
 	g_camera3D->SetFar(50000.0f);
 
+	//バネカメラの初期化
+	m_springCamera.Init(
+		*g_camera3D,	//バネカメラの処理を行うカメラ
+		1000.0f,		//カメラの移動速度の最大値
+		true,			//地形とのあたり判定を取るかどうか(true=取る)
+		5.0f			//カメラに設定される球体コリジョンの半径
+	);
+
 	return true;
 }
 void GameCamera::Update()
@@ -59,7 +67,7 @@ void GameCamera::Update()
 	//大きさが１になるということは、ベクトルから強さがなくなり、方向のみの情報となるということ。
 	Vector3 toPosDir = m_toCameraPos;
 	toPosDir.Normalize();
-	if (toPosDir.y < -0.5f) {
+	if (toPosDir.y < -0.4f) {
 		//カメラが上向きすぎ
 		m_toCameraPos = toCameraPosOld;
 	}
@@ -71,9 +79,10 @@ void GameCamera::Update()
 	//視点を計算する。
 	Vector3 pos = target + m_toCameraPos;
 	//メインカメラに注視点と視点を設定する。
-	g_camera3D->SetTarget(target);
-	g_camera3D->SetPosition(pos);
+	//バネカメラに注視点と視点を設定する
+	m_springCamera.SetPosition(pos);
+	m_springCamera.SetTarget(target);
 
-	//カメラの更新。
-	g_camera3D->Update();
+	//カメラの更新
+	m_springCamera.Update();
 }
