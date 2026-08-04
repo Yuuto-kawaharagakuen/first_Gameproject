@@ -130,7 +130,7 @@ void Player::Move()
 		if (g_pad[0]->IsTrigger(enButtonA))
 		{
 			//ジャンプさせる
-			moveSpeed.y = 700.0f;
+			moveSpeed.y = 770.0f;
 		}
 	}
 	else if (characterController.IsOnGround() == false) {
@@ -138,7 +138,7 @@ void Player::Move()
 		if (g_pad[0]->IsTrigger(enButtonA) and jumpState == 0)
 		{
 			modelRender.PlayAnimation(enAnimationClip_Idle);
-			moveSpeed.y = 700.0f;
+			moveSpeed.y = 770.0f;
 			jumpState = 1;
 		}
 	}

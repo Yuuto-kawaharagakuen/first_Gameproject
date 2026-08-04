@@ -32,10 +32,11 @@ bool GameCamera::Start()
 	//バネカメラの初期化
 	m_springCamera.Init(
 		*g_camera3D,	//バネカメラの処理を行うカメラ
-		1000.0f,		//カメラの移動速度の最大値
+		8000.0f,		//カメラの移動速度の最大値
 		true,			//地形とのあたり判定を取るかどうか(true=取る)
 		5.0f			//カメラに設定される球体コリジョンの半径
 	);
+	m_springCamera.SetDampingRate(0.1f);	//デフォルトは1.0f。小さくするほど追従が速くなる
 
 	return true;
 }
