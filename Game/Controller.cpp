@@ -5,7 +5,7 @@
 #include "sound/SoundEngine.h"
 Controller::Controller()
 {
-	spriteRender.Init("Assets/sprite/controller.dds", 1700.0f, 1080.0f);
+	spriteRender.Init("Assets/sprite/controller.dds", 1920.0f, 1080.0f);
 	NextRender.SetPosition({ 350.0f,515.0f,0.0f });
 	NextRender.SetColor(g_vec4Black);
 	NextRender.SetText(L"NEXT-ゲーム説明");
