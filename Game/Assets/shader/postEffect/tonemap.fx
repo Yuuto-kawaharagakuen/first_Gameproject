@@ -76,10 +76,10 @@ float4 PSFinal( PSInput In) : SV_Target0
     // シーンのカラーをRGB系からHSV系に変換する。
     float3 hsv = Rgb2Hsv(sceneColor);
 
-	float avgLum = lumAvgInTonemapTexture.Sample(Sampler, float2( 0.5f, 0.5f)).r;
-    
+    float avgLum = lumAvgInTonemapTexture.Sample(Sampler, float2(0.5f, 0.5f)).r;
+
     // 平均輝度をmiddleGrayの値にするためのスケール値を求める。
-    float k = ( middleGray / ( max(avgLum, 0.001f )));
+    float k = (middleGray / (max(avgLum, 0.001f)));
     // スケール値を使って、輝度をスケールダウン。
     hsv.z *= k;
     

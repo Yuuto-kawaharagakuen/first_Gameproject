@@ -6,8 +6,6 @@ BackGround::BackGround()
 	modelRender.Init("Assets/modelData/stage/house1.tkm");
 	modelRender.Update();
 	physicsStaticObject.CreateFromModel(modelRender.GetModel(), modelRender.GetModel().GetWorldMatrix());
-
-
 }
 
 BackGround::~BackGround()
