@@ -58,6 +58,14 @@ public:
 	MoveCrystal1* moveCrystal1;
 	EscapeCrystal* escapeCrystal;
 
+	//階段のポール対策の見えない壁（当たり判定）
+	BoxCollider m_stairsBlockerCollider;
+	RigidBody m_stairsBlockerRigidBody;
+
+	//もう一方の階段用（X=140側）
+	BoxCollider m_stairsBlockerCollider2;
+	RigidBody m_stairsBlockerRigidBody2;
+
 	std::mt19937& GetRandomEngine()
 	{
 		static std::mt19937 engine(std::random_device{}());

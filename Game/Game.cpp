@@ -19,7 +19,7 @@
 Game::Game()
 {   
 	srand(time(nullptr));
-	
+
 	//背景を生成
 	sky = NewGO<SkyCube>(0, "skycube");
 	sky->SetType(enSkyCubeType_DayToon);
@@ -32,6 +32,35 @@ Game::Game()
 
 	//マップを生成
 	backGround = NewGO<BackGround>(0);
+
+	//階段のポール対策の壁の位置・角度
+	Vector3 stairsBlockerPos = Vector3(-250.0f, 91.0f, 132.5f);
+	Quaternion stairsBlockerRot;
+	stairsBlockerRot.SetRotationDeg(Vector3::AxisX, -54.2f);	//向きが逆なら 54.2f に変えてみる
+
+	//当たり判定を配置する
+	m_stairsBlockerCollider.Create(Vector3(50.0f, 413.3f, 20.0f));
+	//        X方向の幅 ↑    長さ(斜辺) ↑    厚み ↑
+	{
+		RigidBodyInitData rbInfo;
+		rbInfo.pos = stairsBlockerPos;
+		rbInfo.rot = stairsBlockerRot;
+		rbInfo.collider = &m_stairsBlockerCollider;
+		rbInfo.mass = 0.0f;
+		m_stairsBlockerRigidBody.Init(rbInfo);
+	}
+
+	//もう一方の階段用（X=140側）
+	Vector3 stairsBlockerPos2 = Vector3(-140.0f, 91.0f, 132.5f);
+	m_stairsBlockerCollider2.Create(Vector3(50.0f, 413.3f, 20.0f));
+	{
+		RigidBodyInitData rbInfo2;
+		rbInfo2.pos = stairsBlockerPos2;
+		rbInfo2.rot = stairsBlockerRot;	//回転は同じものを使い回す
+		rbInfo2.collider = &m_stairsBlockerCollider2;
+		rbInfo2.mass = 0.0f;
+		m_stairsBlockerRigidBody2.Init(rbInfo2);
+	}
 
 	//UIを生成
 	countUI = NewGO<CountUI>(0,"countUI");
@@ -127,7 +156,7 @@ Game::Game()
 	m_pausePanelSprite.Init("Assets/sprite/black.dds",1536.0f,864.0f);
 	m_pausePanelSprite.SetPosition({ 0.0f, 0.0f, 0.0f });
 
-
+	
 	m_pauseTitleText.SetText(L"ポーズ");
 	m_pauseTitleText.SetPosition({ -100.0f,170.0f,0.0f});
 	m_pauseTitleText.SetScale(1.3f);

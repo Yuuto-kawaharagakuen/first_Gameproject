@@ -46,6 +46,10 @@ Player::~Player()
 //更新処理
 void Player::Update()
 {
+
+	wchar_t text[128];
+		swprintf_s(text, 128, L"X: %.2f Y: %.2f Z: %.2f", position.x, position.y, position.z);
+		fontRender.SetText(text);
 	// ゲームがアクティブでない間は動作しない（カウントダウン中）
 	if (g_IsGameActive == false)
 	{
