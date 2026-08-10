@@ -12,7 +12,7 @@ void PopupText::Init(const wchar_t* text)
 	fontRender.SetPosition(pos);
 	fontRender.SetColor(g_vec4Cyan);
 	lifeTimer = LifeTime;
-	fontRender.SetFontType(enFontType::Rounded);
+	fontRender.SetFontType(enFontType::Bold);
 }
 
 void PopupText::Update() {

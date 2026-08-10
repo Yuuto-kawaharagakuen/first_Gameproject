@@ -153,7 +153,7 @@ void Player::Move()
 	if (position.y <= -1000.0f)
 	{
 		position = { -1700.0f,-43.88f,450.0f };
-
+		moveSpeed = Vector3::Zero;  //落下速度もリセットしてすり抜け防止
 		characterController.SetPosition(position);
 	}
 	//キャラクターコントローラーを使って座標を移動させる
