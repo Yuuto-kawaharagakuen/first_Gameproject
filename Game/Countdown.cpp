@@ -7,7 +7,8 @@ Countdown::Countdown()
 	elapsed = 0.0f;
 	currentCount = 3;
 	fontRender.SetScale(4.0f);
-	fontRender.SetColor(g_vec4White);
+	fontRender.SetColor(g_vec4Black);
+	fontRender.SetFontType(enFontType::Bold);
 }
 
 Countdown::~Countdown()
@@ -48,7 +49,7 @@ void Countdown::Render(RenderContext& rc)
 	else
 	{
 		swprintf_s(buf, L"Start!");
-		fontRender.SetPosition({ -280.0f, 450.0f, 0.0f });
+		fontRender.SetPosition({ -380.0f, 450.0f, 0.0f });
 	}
 	fontRender.SetText(buf);
 	fontRender.Draw(rc);
