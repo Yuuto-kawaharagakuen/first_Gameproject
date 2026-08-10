@@ -21,9 +21,10 @@ Player::Player()
 	fontRender.SetColor(g_vec4Cyan);
 
 	// フリーズスキルのクールダウン表示UI
-	freezeFontRender.SetPosition({ -950.0f, 500.0f, 0.0f });
+	freezeFontRender.SetPosition({ -950.0f, 530.0f, 0.0f });
 	freezeFontRender.SetColor(g_vec4Cyan);
 	freezeFontRender.SetText(L"フリーズ:使用可能!");
+	freezeFontRender.SetFontType(enFontType::Bold);
 
 	// フリーズ効果音を登録
 	g_soundEngine->ResistWaveFileBank(5, "Assets/sound/Stop.wav");
@@ -47,9 +48,9 @@ Player::~Player()
 void Player::Update()
 {
 
-	wchar_t text[128];
+	/*wchar_t text[128];
 		swprintf_s(text, 128, L"X: %.2f Y: %.2f Z: %.2f", position.x, position.y, position.z);
-		fontRender.SetText(text);
+		fontRender.SetText(text);*/
 	// ゲームがアクティブでない間は動作しない（カウントダウン中）
 	if (g_IsGameActive == false)
 	{

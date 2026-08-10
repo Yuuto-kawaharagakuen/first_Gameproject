@@ -15,10 +15,11 @@ Result1::Result1() {
 	scoreRender.SetScale(2.0f);
 
 	//ランキングへ
-	NextRender.SetPosition({ 250.0f,525.0f,0.0f });
+	NextRender.SetPosition({ 170.0f,525.0f,0.0f });
 	NextRender.SetColor(g_vec4Black);
 	NextRender.SetText(L"NEXT-ランキングへ");
 	NextRender.SetScale(1.5f);
+	NextRender.SetFontType(enFontType::Bold);
 	//リザルト画面のBGMを読み込む
 	g_soundEngine->ResistWaveFileBank(4, "Assets/sound/result.wav");
 	//リザルト画面のBGMを再生する。

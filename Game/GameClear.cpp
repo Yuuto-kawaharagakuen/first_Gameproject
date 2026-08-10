@@ -11,6 +11,7 @@ GameClear::GameClear() {
 	fontRender.SetColor(g_vec4Black);
 	fontRender.SetText(L"NEXT-リザルトへ");
 	fontRender.SetScale(1.5f);
+	fontRender.SetFontType(enFontType::Bold);
 	// ゲームクリアのBGMを読み込む
 	g_soundEngine->ResistWaveFileBank(3,"Assets/sound/GameClear.wav");
 	GameClearBGM = NewGO<SoundSource>(0);
