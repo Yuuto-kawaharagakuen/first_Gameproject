@@ -172,6 +172,14 @@ void Player::Rotation()
 		rotation.SetRotationYFromDirectionXZ(moveSpeed);
 		//絵描きさんに回転を教える
 		modelRender.SetRotation(rotation);
+		// 向きベクトルを保持(ミニマップの矢印表示用)
+		Vector3 dir = moveSpeed;
+		dir.y = 0.0f;
+		float len = dir.Length();
+		if (len > 0.001f)
+		{
+			facingDir = dir * (1.0f / len);
+		}
 	}
 }
 

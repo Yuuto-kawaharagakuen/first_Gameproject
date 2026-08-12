@@ -31,6 +31,7 @@
     <ClCompile Include="RankingScene.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="PopupText.cpp" />
+    <ClCompile Include="MiniMap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -57,5 +58,6 @@
     <ClInclude Include="RankingScene.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="PopupText.h" />
+    <ClInclude Include="MiniMap.h" />
   </ItemGroup>
 </Project>

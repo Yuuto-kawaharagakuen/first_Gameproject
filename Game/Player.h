@@ -36,7 +36,7 @@ public:
 	CharacterController characterController;
 	Vector3 moveSpeed;
 	Quaternion rotation;
-
+	Vector3 facingDir = Vector3::AxisX;  
 
 	int playerState = 0;
 	int crystalCount = 0;

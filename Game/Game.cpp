@@ -15,6 +15,7 @@
 #include "Countdown.h"
 #include"MoveCrystal1.h"
 #include"EscapeCrystal.h"
+#include "MiniMap.h"
 #include<time.h>
 Game::Game()
 {   
@@ -67,6 +68,8 @@ Game::Game()
 	//ここでgoalUIをnullptrにしておく。これで、ゲーム開始時にはゴールUIは存在しない状態になる。
 	goalUI = nullptr;
 	goalUIElapsedTime = 0.0f;
+	NewGO<MiniMap>(0, "minimap");
+
 	float crystal4X = GetRandomValue(-1250.0f, 450.0f);
 	float crystal4Z = GetRandomValue(-1150.0f, -800.0f);
 	float crystal5X = GetRandomValue(-1450.0f, -600.0f);
@@ -216,6 +219,7 @@ Game::~Game()
 	//ゴールUIを削除する;
 	DeleteGO(goalUI);
 	DeleteGO(goal);
+	DeleteGO(miniMap);
 }
 
 //更新処理
