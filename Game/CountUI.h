@@ -12,6 +12,7 @@ public:
 	FontRender fontRender;
 	Vector3 position=Vector3::Zero;
 	int UInum = 0;
+	int TotalNum = 0;
 
 	int Score = 0;
 	Player* player;

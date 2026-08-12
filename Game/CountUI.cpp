@@ -25,7 +25,7 @@ void CountUI::Update()
 	}
 
 	wchar_t text[50];
-	swprintf_s(text, 50, L"x%d", UInum);
+	swprintf_s(text, 50, L"%d/%d", UInum, TotalNum);
 	fontRender.SetText(text);
 	fontRender.SetPosition(position);
 	player = FindGO<Player>("player");

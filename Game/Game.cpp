@@ -88,50 +88,64 @@ Game::Game()
 	Crystal* crystal1 = NewGO<Crystal>(0, "crystal");
 	crystal1->position = { 1130.0f,1553.2f,-1120.5f };
 	crystal1->firstPosition = crystal1->position;
-	
+	totalCrystalNum++;
+
 	Crystal* crystal2 = NewGO<Crystal>(0, "crystal");
 	crystal2->position = N2[rand() % 2];
 	crystal2->firstPosition = crystal2->position;
+	totalCrystalNum++;
 
 	Crystal* crystal3 = NewGO<Crystal>(0, "crystal");
 	crystal3->position = { 1450.0f,30.7f,-1450.0f };
 	crystal3->firstPosition = crystal3->position;
+	totalCrystalNum++;
 
 	Crystal* crystal4 = NewGO<Crystal>(0, "crystal");
 	crystal4->position = { crystal4X,-300.0f,crystal4Z };
 	crystal4->firstPosition = crystal4->position;
+	totalCrystalNum++;
 
 	Crystal* crystal5 = NewGO<Crystal>(0, "crystal");
 	crystal5->position = { crystal5X,-30.03f,crystal5Z };
 	crystal5->firstPosition = crystal5->position;
-	
+	totalCrystalNum++;
+
 	Crystal* crystal6 = NewGO<Crystal>(0, "crystal");
 	crystal6->position = { crystal6X,10.40f, crystal6Z };
 	crystal6->firstPosition = crystal6->position;
+	totalCrystalNum++;
 
 	Crystal* crystal7 = NewGO<Crystal>(0, "crystal");
 	crystal7->position = { 1000.0f,10.39f,-1000.0f };
 	crystal7->firstPosition = crystal7->position;
+	totalCrystalNum++;
 
 	Crystal* crystal8 = NewGO<Crystal>(0, "crystal");
 	crystal8->position = { -1685.0f,10.0f, crystal8Z };
 	crystal8->firstPosition = crystal8->position;
+	totalCrystalNum++;
 
 	Crystal* crystal9 = NewGO<Crystal>(0, "crystal");
 	crystal9->position = { 1250.0f,623.0f, -700.0f };
 	crystal9->firstPosition = crystal9->position;
+	totalCrystalNum++;
 
 	Crystal* crystal10 = NewGO<Crystal>(0, "crystal");
 	crystal10->position = N10[rand() % 3];
 	crystal10->firstPosition = crystal10->position;
+	totalCrystalNum++;
 
 	MoveCrystal1* moveCrystal1 = NewGO<MoveCrystal1>(0, "crystal");
 	moveCrystal1->position = { 0.0f,-300.0f,1200.0f };
 	moveCrystal1->firstPosition = moveCrystal1->position;
+	totalCrystalNum++;
 
 	EscapeCrystal* escapeCrystal = NewGO<EscapeCrystal>(0, "crystal");
 	escapeCrystal->position = { 600.0f,1010.0f,-150.0f };
 	escapeCrystal->firstPosition = escapeCrystal->position;
+	totalCrystalNum++;
+
+	countUI->TotalNum = totalCrystalNum;
 
 	goal = NewGO<Goal>(0, "goal");
 	goal->position = { 50000.0f, 5000.0f, 5000.0f };

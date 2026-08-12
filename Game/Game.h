@@ -26,6 +26,7 @@ public:
 	void EnterPause();
 	void ExitPause(bool backToTitle);
 
+	int totalCrystalNum = 0;
 	bool m_isPaused = false;
 	int m_pauseCursor = 0;   //0=続ける 1=タイトルへ
 	bool m_gameActiveBeforePause = true;
